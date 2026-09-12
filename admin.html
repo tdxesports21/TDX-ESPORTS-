@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TDX ESPORTS - Admin</title>
+
+<style>
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+  font-family:Arial,sans-serif;
+}
+
+body{
+  background:#061225;
+  color:white;
+  min-height:100vh;
+}
+
+.header{
+  background:#0a1b35;
+  padding:18px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  border-bottom:1px solid #12375d;
+}
+
+.logo{
+  color:#19d9ff;
+  font-size:22px;
+  font-weight:bold;
+}
+
+.admin{
+  color:#9fb5cc;
+  font-size:13px;
+}
+
+.container{
+  padding:20px;
+}
+
+h1{
+  font-size:25px;
+  margin-bottom:6px;
+}
+
+.subtitle{
+  color:#8ea5bd;
+  margin-bottom:22px;
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:14px;
+}
+
+.card{
+  background:#0b1d36;
+  border:1px solid #153b61;
+  border-radius:14px;
+  padding:18px;
+  min-height:125px;
+}
+
+.icon{
+  font-size:28px;
+  margin-bottom:10px;
+}
+
+.card h3{
+  font-size:16px;
+  margin-bottom:6px;
+}
+
+.card p{
+  color:#8ea5bd;
+  font-size:12px;
+}
+
+.big{
+  grid-column:1/3;
+}
+
+.stats{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:10px;
+  margin:22px 0;
+}
+
+.stat{
+  background:#091a30;
+  border:1px solid #153b61;
+  border-radius:12px;
+  padding:14px 8px;
+  text-align:center;
+}
+
+.stat b{
+  display:block;
+  color:#19d9ff;
+  font-size:21px;
+}
+
+.stat span{
+  color:#8ea5bd;
+  font-size:11px;
+}
+
+button{
+  width:100%;
+  margin-top:22px;
+  padding:14px;
+  border:none;
+  border-radius:10px;
+  background:#12cde9;
+  color:#00131f;
+  font-weight:bold;
+  font-size:15px;
+}
+
+button:active{
+  transform:scale(.98);
+}
+</style>
+</head>
+
+<body>
+
+<div class="header">
+  <div class="logo">TDX ESPORTS</div>
+  <div class="admin">ADMIN PANEL</div>
+</div>
+
+<div class="container">
+
+  <h1>Admin Dashboard</h1>
+  <div class="subtitle">Manage your esports platform</div>
+
+  <div class="stats">
+    <div class="stat">
+      <b>24</b>
+      <span>Players</span>
+    </div>
+
+    <div class="stat">
+      <b>8</b>
+      <span>Tournaments</span>
+    </div>
+
+    <div class="stat">
+      <b>6</b>
+      <span>Teams</span>
+    </div>
+  </div>
+
+  <div class="grid">
+
+    <div class="card" onclick="openPage('create-tournament.html')">
+      <div class="icon">🏆</div>
+      <h3>Create Tournament</h3>
+      <p>Create and publish new tournaments</p>
+    </div>
+
+    <div class="card" onclick="openPage('manage-teams.html')">
+      <div class="icon">👥</div>
+      <h3>Manage Teams</h3>
+      <p>View and manage registered teams</p>
+    </div>
+
+    <div class="card" onclick="openPage('manage-results.html')">
+      <div class="icon">📊</div>
+      <h3>Manage Results</h3>
+      <p>Update tournament results</p>
+    </div>
+
+    <div class="card" onclick="openPage('manage-admins.html')">
+      <div class="icon">🛡️</div>
+      <h3>Manage Admins</h3>
+      <p>Manage administrator accounts</p>
+    </div>
+
+    <div class="card big" onclick="openPage('leaderboard.html')">
+      <div class="icon">🥇</div>
+      <h3>Leaderboard</h3>
+      <p>View player rankings and tournament performance</p>
+    </div>
+
+  </div>
+
+  <button onclick="logout()">LOGOUT</button>
+
+</div>
+
+<script>
+
+function openPage(page){
+  window.location.href = page;
+}
+
+function logout(){
+  window.location.href = "admin-login.html";
+}
+
+</script>
+
+</body>
+</html>
