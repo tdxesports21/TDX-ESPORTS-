@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TDX ESPORTS - Results</title>
+
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+body{
+  font-family:Arial,sans-serif;
+  background:#020817;
+  color:white;
+  min-height:100vh;
+  padding-bottom:85px;
+}
+
+.header{
+  padding:22px 18px 15px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.logo{
+  font-size:21px;
+  font-weight:900;
+  letter-spacing:2px;
+}
+
+.logo span{
+  color:#00c8ff;
+}
+
+.profile{
+  width:42px;
+  height:42px;
+  border:2px solid #00c8ff;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:20px;
+  box-shadow:0 0 12px rgba(0,200,255,.35);
+}
+
+.title{
+  padding:12px 18px 20px;
+}
+
+.title h1{
+  font-size:27px;
+}
+
+.title p{
+  color:#7892a8;
+  font-size:13px;
+  margin-top:6px;
+}
+
+.section{
+  padding:0 18px;
+}
+
+.result{
+  background:linear-gradient(145deg,#071c30,#04101e);
+  border:1px solid #12364e;
+  border-radius:18px;
+  padding:17px;
+  margin-bottom:15px;
+}
+
+.result-top{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.game{
+  color:#00c8ff;
+  font-size:12px;
+  font-weight:bold;
+  letter-spacing:1px;
+}
+
+.completed{
+  color:#58d68d;
+  background:rgba(88,214,141,.1);
+  padding:5px 9px;
+  border-radius:10px;
+  font-size:10px;
+}
+
+.result h2{
+  font-size:18px;
+  margin-top:12px;
+}
+
+.date{
+  color:#71899c;
+  font-size:11px;
+  margin-top:7px;
+}
+
+.rank-box{
+  margin-top:15px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  background:#061426;
+  padding:13px;
+  border-radius:11px;
+}
+
+.rank{
+  color:#00c8ff;
+  font-size:13px;
+}
+
+.points{
+  text-align:right;
+}
+
+.points small{
+  display:block;
+  color:#6f899d;
+  font-size:10px;
+}
+
+.points b{
+  font-size:15px;
+}
+
+.bottom-nav{
+  position:fixed;
+  left:0;
+  right:0;
+  bottom:0;
+  height:72px;
+  background:#03101d;
+  border-top:1px solid #123249;
+  display:flex;
+  justify-content:space-around;
+  align-items:center;
+}
+
+.nav{
+  text-align:center;
+  color:#637e93;
+  font-size:10px;
+  text-decoration:none;
+}
+
+.nav-icon{
+  font-size:21px;
+  margin-bottom:4px;
+}
+
+.nav.active{
+  color:#00c8ff;
+}
+</style>
+</head>
+
+<body>
+
+<div class="header">
+  <div class="logo">TDX <span>ESPORTS</span></div>
+  <div class="profile">👤</div>
+</div>
+
+<div class="title">
+  <h1>Results</h1>
+  <p>Check your tournament performance</p>
+</div>
+
+<div class="section">
+
+  <div class="result">
+    <div class="result-top">
+      <div class="game">BGMI</div>
+      <div class="completed">COMPLETED</div>
+    </div>
+
+    <h2>TDX WEEKLY CUP</h2>
+    <div class="date">08 SEP 2026</div>
+
+    <div class="rank-box">
+      <div class="rank">🏆 Rank #3</div>
+
+      <div class="points">
+        <small>PRIZE WON</small>
+        <b>₹1,000</b>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="result">
+    <div class="result-top">
+      <div class="game">BGMI</div>
+      <div class="completed">COMPLETED</div>
+    </div>
+
+    <h2>TDX NIGHT BATTLE</h2>
+    <div class="date">05 SEP 2026</div>
+
+    <div class="rank-box">
+      <div class="rank">🏆 Rank #7</div>
+
+      <div class="points">
+        <small>PRIZE WON</small>
+        <b>₹300</b>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="result">
+    <div class="result-top">
+      <div class="game">BGMI</div>
+      <div class="completed">COMPLETED</div>
+    </div>
+
+    <h2>TDX CHAMPIONSHIP</h2>
+    <div class="date">01 SEP 2026</div>
+
+    <div class="rank-box">
+      <div class="rank">🏆 Rank #12</div>
+
+      <div class="points">
+        <small>PRIZE WON</small>
+        <b>₹0</b>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="bottom-nav">
+
+  <a class="nav" href="home.html">
+    <div class="nav-icon">⌂</div>
+    Home
+  </a>
+
+  <a class="nav" href="tournaments.html">
+    <div class="nav-icon">🏆</div>
+    Tournaments
+  </a>
+
+  <a class="nav active" href="results.html">
+    <div class="nav-icon">📊</div>
+    Results
+  </a>
+
+  <a class="nav" href="profile.html">
+    <div class="nav-icon">👤</div>
+    Profile
+  </a>
+
+</div>
+
+</body>
+</html>
