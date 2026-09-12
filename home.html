@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TDX ESPORTS - Home</title>
+
+<style>
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+body{
+  min-height:100vh;
+  font-family:Arial,sans-serif;
+  background:#020817;
+  color:white;
+}
+
+.home{
+  min-height:100vh;
+  padding:28px 18px 90px;
+  background:
+    radial-gradient(circle at 50% 0%,#073a63 0%,#03182d 35%,#020817 75%);
+}
+
+.header{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  margin-bottom:28px;
+}
+
+.brand{
+  font-size:22px;
+  font-weight:900;
+  letter-spacing:2px;
+  text-shadow:0 0 12px #00c8ff;
+}
+
+.brand span{
+  color:#00c8ff;
+}
+
+.avatar{
+  width:45px;
+  height:45px;
+  border-radius:50%;
+  border:2px solid #00c8ff;
+  background:#08243a;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-weight:900;
+  color:#00c8ff;
+  overflow:hidden;
+}
+
+.avatar img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+.welcome{
+  padding:22px;
+  border:1px solid #16415f;
+  border-radius:18px;
+  background:rgba(5,25,43,.8);
+  box-shadow:0 0 20px rgba(0,180,255,.12);
+}
+
+.welcome small{
+  color:#8faabd;
+}
+
+.welcome h1{
+  margin-top:7px;
+  font-size:25px;
+}
+
+.welcome h1 span{
+  color:#00c8ff;
+}
+
+.welcome p{
+  margin-top:8px;
+  color:#91aabd;
+  font-size:13px;
+}
+
+.section-title{
+  margin:28px 3px 14px;
+  font-size:18px;
+  font-weight:800;
+}
+
+.cards{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
+}
+
+.card{
+  padding:20px 15px;
+  border-radius:16px;
+  border:1px solid #153b57;
+  background:#071827;
+  cursor:pointer;
+  transition:.2s;
+}
+
+.card:active{
+  transform:scale(.97);
+}
+
+.icon{
+  font-size:28px;
+}
+
+.card h3{
+  margin-top:12px;
+  font-size:15px;
+}
+
+.card p{
+  margin-top:5px;
+  color:#7892a4;
+  font-size:11px;
+}
+
+.tournament{
+  margin-top:12px;
+  padding:18px;
+  border-radius:16px;
+  border:1px solid #16415f;
+  background:#071827;
+}
+
+.tournament-top{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.tournament h3{
+  font-size:15px;
+}
+
+.badge{
+  padding:5px 9px;
+  border-radius:8px;
+  background:#063b51;
+  color:#00c8ff;
+  font-size:10px;
+}
+
+.tournament p{
+  margin-top:9px;
+  color:#8199aa;
+  font-size:12px;
+}
+
+.join{
+  margin-top:14px;
+  width:100%;
+  padding:12px;
+  border:0;
+  border-radius:10px;
+  background:#00bce9;
+  color:#00131c;
+  font-weight:800;
+}
+
+.bottom-nav{
+  position:fixed;
+  bottom:0;
+  left:0;
+  right:0;
+  height:68px;
+  display:flex;
+  justify-content:space-around;
+  align-items:center;
+  background:#04111e;
+  border-top:1px solid #16364d;
+}
+
+.nav{
+  text-align:center;
+  color:#71899a;
+  font-size:11px;
+  cursor:pointer;
+}
+
+.nav.active{
+  color:#00c8ff;
+}
+
+.nav div{
+  font-size:21px;
+  margin-bottom:3px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="home">
+
+  <div class="header">
+    <div class="brand">
+      TDX <span>ESPORTS</span>
+    </div>
+
+    <div class="avatar" id="avatar">P</div>
+  </div>
+
+  <section class="welcome">
+    <small>WELCOME BACK</small>
+    <h1>Hello, <span id="playerName">Player</span> 👋</h1>
+    <p>Ready to play, compete and conquer?</p>
+  </section>
+
+  <div class="section-title">Quick Access</div>
+
+  <div class="cards">
+
+    <div class="card" onclick="location.href='tournaments.html'">
+      <div class="icon">🏆</div>
+      <h3>Tournaments</h3>
+      <p>Join upcoming matches</p>
+    </div>
+
+    <div class="card" onclick="location.href='team.html'">
+      <div class="icon">👥</div>
+      <h3>My Team</h3>
+      <p>Manage your team</p>
+    </div>
+
+    <div class="card" onclick="location.href='leaderboard.html'">
+      <div class="icon">🏅</div>
+      <h3>Leaderboard</h3>
+      <p>Check rankings</p>
+    </div>
+
+    <div class="card" onclick="location.href='profile.html'">
+      <div class="icon">👤</div>
+      <h3>Profile</h3>
+      <p>View your profile</p>
+    </div>
+
+  </div>
+
+  <div class="section-title">Featured Tournament</div>
+
+  <div class="tournament">
+
+    <div class="tournament-top">
+      <h3>TDX Battle Royale</h3>
+      <div class="badge">LIVE SOON</div>
+    </div>
+
+    <p>Solo • BGMI • Prize Pool ₹10,000</p>
+
+    <button class="join"
+      onclick="location.href='tournament.html'">
+      VIEW TOURNAMENT
+    </button>
+
+  </div>
+
+</div>
+
+<div class="bottom-nav">
+
+  <div class="nav active" onclick="location.href='home.html'">
+    <div>⌂</div>
+    Home
+  </div>
+
+  <div class="nav" onclick="location.href='tournaments.html'">
+    <div>🏆</div>
+    Tournaments
+  </div>
+
+  <div class="nav" onclick="location.href='results.html'">
+    <div>📊</div>
+    Results
+  </div>
+
+  <div class="nav" onclick="location.href='profile.html'">
+    <div>👤</div>
+    Profile
+  </div>
+
+</div>
+
+<script>
+const name = localStorage.getItem("tdx_player_name");
+
+if(name){
+  document.getElementById("playerName").textContent = name;
+}
+
+const dp = localStorage.getItem("tdx_player_dp");
+
+if(dp){
+  document.getElementById("avatar").innerHTML =
+    '<img src="' + dp + '" alt="DP">';
+}
+</script>
+
+</body>
+</html>
