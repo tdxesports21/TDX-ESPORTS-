@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TDX ESPORTS - My Team</title>
+
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+body{
+  font-family:Arial,sans-serif;
+  background:#020817;
+  color:white;
+  min-height:100vh;
+  padding-bottom:85px;
+}
+
+.header{
+  padding:22px 18px 18px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.logo{
+  font-size:21px;
+  font-weight:900;
+  letter-spacing:2px;
+}
+
+.logo span{
+  color:#00c8ff;
+}
+
+.title{
+  padding:10px 18px 20px;
+}
+
+.title h1{
+  font-size:27px;
+}
+
+.title p{
+  color:#7892a8;
+  font-size:13px;
+  margin-top:6px;
+}
+
+.team-card{
+  margin:0 18px 20px;
+  padding:20px;
+  background:linear-gradient(145deg,#071c30,#04101e);
+  border:1px solid #12364e;
+  border-radius:18px;
+}
+
+.team-name{
+  font-size:22px;
+  font-weight:800;
+}
+
+.team-tag{
+  color:#00c8ff;
+  font-size:12px;
+  margin-top:5px;
+}
+
+.team-stats{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:10px;
+  margin-top:18px;
+}
+
+.stat{
+  background:#061426;
+  border-radius:10px;
+  padding:12px 5px;
+  text-align:center;
+}
+
+.stat b{
+  display:block;
+  color:#00c8ff;
+  font-size:18px;
+}
+
+.stat span{
+  color:#71899c;
+  font-size:9px;
+  display:block;
+  margin-top:5px;
+}
+
+.section{
+  padding:0 18px;
+}
+
+.section-title{
+  font-size:14px;
+  color:#8ba4b8;
+  margin-bottom:12px;
+  text-transform:uppercase;
+  letter-spacing:1px;
+}
+
+.member{
+  display:flex;
+  align-items:center;
+  background:#061426;
+  border:1px solid #123249;
+  border-radius:13px;
+  padding:13px;
+  margin-bottom:10px;
+}
+
+.member-avatar{
+  width:43px;
+  height:43px;
+  border-radius:50%;
+  border:1px solid #00c8ff;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:#00c8ff;
+  background:#020817;
+  font-size:19px;
+}
+
+.member-info{
+  margin-left:12px;
+  flex:1;
+}
+
+.member-info b{
+  font-size:14px;
+}
+
+.member-info span{
+  display:block;
+  color:#71899c;
+  font-size:10px;
+  margin-top:4px;
+}
+
+.captain{
+  color:#00c8ff;
+  font-size:10px;
+}
+
+.add-btn{
+  width:100%;
+  margin-top:8px;
+  padding:13px;
+  border:1px dashed #00c8ff;
+  border-radius:12px;
+  background:transparent;
+  color:#00c8ff;
+  font-weight:bold;
+}
+
+.bottom-nav{
+  position:fixed;
+  left:0;
+  right:0;
+  bottom:0;
+  height:72px;
+  background:#03101d;
+  border-top:1px solid #123249;
+  display:flex;
+  justify-content:space-around;
+  align-items:center;
+}
+
+.nav{
+  text-align:center;
+  color:#637e93;
+  font-size:10px;
+  text-decoration:none;
+}
+
+.nav-icon{
+  font-size:21px;
+  margin-bottom:4px;
+}
+
+.nav.active{
+  color:#00c8ff;
+}
+</style>
+</head>
+
+<body>
+
+<div class="header">
+  <div class="logo">TDX <span>ESPORTS</span></div>
+</div>
+
+<div class="title">
+  <h1>My Team</h1>
+  <p>Manage your esports team</p>
+</div>
+
+<div class="team-card">
+  <div class="team-name">DOMIN ESPORTS</div>
+  <div class="team-tag">#DOMIN</div>
+
+  <div class="team-stats">
+    <div class="stat">
+      <b>4</b>
+      <span>MEMBERS</span>
+    </div>
+
+    <div class="stat">
+      <b>12</b>
+      <span>MATCHES</span>
+    </div>
+
+    <div class="stat">
+      <b>5</b>
+      <span>WINS</span>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+
+  <div class="section-title">Team Members</div>
+
+  <div class="member">
+    <div class="member-avatar">👤</div>
+    <div class="member-info">
+      <b>TDX PLAYER</b>
+      <span>In-Game Leader</span>
+    </div>
+    <div class="captain">CAPTAIN</div>
+  </div>
+
+  <div class="member">
+    <div class="member-avatar">👤</div>
+    <div class="member-info">
+      <b>DOMIN X</b>
+      <span>Assaulter</span>
+    </div>
+  </div>
+
+  <div class="member">
+    <div class="member-avatar">👤</div>
+    <div class="member-info">
+      <b>DOMIN V</b>
+      <span>Support</span>
+    </div>
+  </div>
+
+  <div class="member">
+    <div class="member-avatar">👤</div>
+    <div class="member-info">
+      <b>DOMIN S</b>
+      <span>Sniper</span>
+    </div>
+  </div>
+
+  <button class="add-btn">+ ADD TEAM MEMBER</button>
+
+</div>
+
+<div class="bottom-nav">
+
+  <a class="nav" href="home.html">
+    <div class="nav-icon">⌂</div>
+    Home
+  </a>
+
+  <a class="nav" href="tournaments.html">
+    <div class="nav-icon">🏆</div>
+    Tournaments
+  </a>
+
+  <a class="nav" href="results.html">
+    <div class="nav-icon">📊</div>
+    Results
+  </a>
+
+  <a class="nav" href="profile.html">
+    <div class="nav-icon">👤</div>
+    Profile
+  </a>
+
+</div>
+
+</body>
+</html>
