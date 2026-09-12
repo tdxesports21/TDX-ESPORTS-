@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TDX ESPORTS - Profile</title>
+
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+body{
+  font-family:Arial,sans-serif;
+  background:#020817;
+  color:white;
+  min-height:100vh;
+  padding-bottom:90px;
+}
+
+.header{
+  padding:22px 18px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.logo{
+  font-size:21px;
+  font-weight:900;
+  letter-spacing:2px;
+}
+
+.logo span{
+  color:#00c8ff;
+}
+
+.settings{
+  color:#00c8ff;
+  font-size:22px;
+}
+
+.profile-card{
+  margin:5px 18px 20px;
+  padding:25px 18px;
+  text-align:center;
+  background:linear-gradient(145deg,#071c30,#04101e);
+  border:1px solid #12364e;
+  border-radius:20px;
+}
+
+.avatar{
+  width:90px;
+  height:90px;
+  margin:auto;
+  border-radius:50%;
+  border:3px solid #00c8ff;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:38px;
+  box-shadow:0 0 20px rgba(0,200,255,.4);
+  overflow:hidden;
+  background:#061426;
+}
+
+.avatar img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+.player-name{
+  margin-top:14px;
+  font-size:23px;
+  font-weight:800;
+}
+
+.player-id{
+  margin-top:6px;
+  color:#71899c;
+  font-size:12px;
+}
+
+.edit-btn{
+  margin-top:16px;
+  padding:10px 25px;
+  border:1px solid #00c8ff;
+  background:transparent;
+  color:#00c8ff;
+  border-radius:9px;
+  font-weight:bold;
+}
+
+.section{
+  padding:0 18px;
+}
+
+.section-title{
+  font-size:14px;
+  color:#8ba4b8;
+  margin-bottom:12px;
+  text-transform:uppercase;
+  letter-spacing:1px;
+}
+
+.stats{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:10px;
+  margin-bottom:22px;
+}
+
+.stat{
+  background:#061426;
+  border:1px solid #123249;
+  border-radius:12px;
+  padding:15px 5px;
+  text-align:center;
+}
+
+.stat b{
+  display:block;
+  color:#00c8ff;
+  font-size:19px;
+}
+
+.stat span{
+  color:#71899c;
+  font-size:10px;
+  margin-top:5px;
+  display:block;
+}
+
+.menu{
+  background:#061426;
+  border:1px solid #123249;
+  border-radius:15px;
+  overflow:hidden;
+}
+
+.menu-item{
+  display:flex;
+  align-items:center;
+  padding:16px;
+  border-bottom:1px solid #102a3e;
+  text-decoration:none;
+  color:white;
+}
+
+.menu-item:last-child{
+  border-bottom:0;
+}
+
+.menu-icon{
+  width:35px;
+  font-size:20px;
+}
+
+.menu-text{
+  flex:1;
+  font-size:14px;
+}
+
+.arrow{
+  color:#5e788c;
+}
+
+.bottom-nav{
+  position:fixed;
+  left:0;
+  right:0;
+  bottom:0;
+  height:72px;
+  background:#03101d;
+  border-top:1px solid #123249;
+  display:flex;
+  justify-content:space-around;
+  align-items:center;
+}
+
+.nav{
+  text-align:center;
+  color:#637e93;
+  font-size:10px;
+  text-decoration:none;
+}
+
+.nav-icon{
+  font-size:21px;
+  margin-bottom:4px;
+}
+
+.nav.active{
+  color:#00c8ff;
+}
+</style>
+</head>
+
+<body>
+
+<div class="header">
+  <div class="logo">TDX <span>ESPORTS</span></div>
+  <div class="settings">⚙</div>
+</div>
+
+<div class="profile-card">
+
+  <div class="avatar" id="avatar">
+    👤
+  </div>
+
+  <div class="player-name" id="playerName">
+    TDX PLAYER
+  </div>
+
+  <div class="player-id">
+    Player ID: TDX001
+  </div>
+
+  <button class="edit-btn" onclick="editProfile()">
+    EDIT PROFILE
+  </button>
+
+</div>
+
+<div class="section">
+
+  <div class="section-title">Statistics</div>
+
+  <div class="stats">
+
+    <div class="stat">
+      <b>0</b>
+      <span>TOURNAMENTS</span>
+    </div>
+
+    <div class="stat">
+      <b>0</b>
+      <span>WINS</span>
+    </div>
+
+    <div class="stat">
+      <b>₹0</b>
+      <span>EARNINGS</span>
+    </div>
+
+  </div>
+
+  <div class="section-title">Account</div>
+
+  <div class="menu">
+
+    <a href="#" class="menu-item">
+      <div class="menu-icon">👤</div>
+      <div class="menu-text">Personal Information</div>
+      <div class="arrow">›</div>
+    </a>
+
+    <a href="#" class="menu-item">
+      <div class="menu-icon">👥</div>
+      <div class="menu-text">My Team</div>
+      <div class="arrow">›</div>
+    </a>
+
+    <a href="#" class="menu-item">
+      <div class="menu-icon">🔔</div>
+      <div class="menu-text">Notifications</div>
+      <div class="arrow">›</div>
+    </a>
+
+    <a href="#" class="menu-item">
+      <div class="menu-icon">🔒</div>
+      <div class="menu-text">Privacy & Security</div>
+      <div class="arrow">›</div>
+    </a>
+
+  </div>
+
+</div>
+
+<div class="bottom-nav">
+
+  <a class="nav" href="home.html">
+    <div class="nav-icon">⌂</div>
+    Home
+  </a>
+
+  <a class="nav" href="tournaments.html">
+    <div class="nav-icon">🏆</div>
+    Tournaments
+  </a>
+
+  <a class="nav" href="results.html">
+    <div class="nav-icon">📊</div>
+    Results
+  </a>
+
+  <a class="nav active" href="profile.html">
+    <div class="nav-icon">👤</div>
+    Profile
+  </a>
+
+</div>
+
+<script>
+const savedName = localStorage.getItem("tdx_player_name");
+const savedDP = localStorage.getItem("tdx_player_dp");
+
+if(savedName){
+  document.getElementById("playerName").textContent = savedName;
+}
+
+if(savedDP){
+  document.getElementById("avatar").innerHTML =
+    '<img src="' + savedDP + '" alt="Profile">';
+}
+
+function editProfile(){
+  const name = prompt("Enter Player Name:");
+
+  if(name && name.trim()){
+    localStorage.setItem("tdx_player_name", name.trim());
+    document.getElementById("playerName").textContent = name.trim();
+  }
+}
+</script>
+
+</body>
+</html>
