@@ -8,6 +8,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+
       - name: Checkout
         uses: actions/checkout@v4
 
@@ -17,21 +18,42 @@ jobs:
           distribution: temurin
           java-version: '21'
 
-      - name: Setup Node.js
+      - name: Setup Node
         uses: actions/setup-node@v4
         with:
           node-version: '22'
 
-      - name: Create Capacitor project
+      - name: Create package.json
         run: |
-          npm init -y
-          npm install @capacitor/core@8.5.1 @capacitor/cli@8.5.1 @capacitor/android@8.5.1
-          npm install @capacitor-firebase/authentication@8.5.1 firebase
+          cat > package.json <<'EOF'
+          {
+            "name": "tdx-esports",
+            "version": "1.0.0",
+            "private": true,
+            "scripts": {
+              "build": "echo build"
+            },
+            "dependencies": {
+              "@capacitor/core": "8.5.1",
+              "@capacitor/android": "8.5.1",
+              "@capacitor-firebase/authentication": "8.5.1",
+              "firebase": "12.2.1"
+            },
+            "devDependencies": {
+              "@capacitor/cli": "8.5.1"
+            }
+          }
+          EOF
+
+      - name: Install packages
+        run: npm install
 
       - name: Prepare web files
         run: |
           mkdir -p www
           cp *.html www/
+          echo "Web files:"
+          ls -la www
 
       - name: Create Capacitor config
         run: |
@@ -49,34 +71,58 @@ jobs:
           EOF
 
       - name: Add Android
-        run: |
-          npx cap add android
+        run: npx cap add android
 
       - name: Add Firebase config
         run: |
+          mkdir -p android/app
           if [ -f "google-services (1).json" ]; then
             cp "google-services (1).json" android/app/google-services.json
           elif [ -f "google-services.json" ]; then
-            cp "google-services.json" android/app/google-services.json
+            cp google-services.json android/app/google-services.json
           else
             echo "google-services.json not found"
             exit 1
           fi
 
-      - name: Sync Capacitor
+      - name: Configure Firebase plugin
         run: |
-          npx cap sync android
+          python3 - <<'PY'
+          from pathlib import Path
 
-      - name: Install Android SDK 36
+          p = Path("android/variables.gradle")
+          text = p.read_text()
+
+          if "rgcfaIncludeGoogle" not in text:
+              text += "\nrgcfaIncludeGoogle = true\n"
+
+          if "androidxCredentialsVersion" not in text:
+              text += "\nandroidxCredentialsVersion = '1.3.0'\n"
+
+          p.write_text(text)
+          PY
+
+      - name: Sync Capacitor
+        run: npx cap sync android
+
+      - name: Force compile SDK 36
         run: |
-          yes | sdkmanager --licenses || true
-          sdkmanager "platforms;android-36" "build-tools;36.0.0"
+          cat > force-compile-sdk.gradle <<'EOF'
+          subprojects {
+              afterEvaluate { project ->
+                  if (project.hasProperty("android")) {
+                      project.android.compileSdkVersion 36
+                      println("FORCED compileSdk = 36 for ${project.path}")
+                  }
+              }
+          }
+          EOF
 
       - name: Build APK
+        working-directory: android
         run: |
-          cd android
           chmod +x gradlew
-          ./gradlew assembleDebug
+          ./gradlew --init-script ../force-compile-sdk.gradle assembleDebug --no-daemon
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
