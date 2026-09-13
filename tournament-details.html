@@ -7,259 +7,348 @@
 
 <style>
 *{
+  box-sizing:border-box;
   margin:0;
   padding:0;
-  box-sizing:border-box;
 }
 
 body{
   font-family:Arial,sans-serif;
   background:#020817;
-  color:white;
-  min-height:100vh;
-  padding-bottom:30px;
+  color:#fff;
 }
 
+.app{
+  min-height:100vh;
+  padding-bottom:30px;
+  background:
+    radial-gradient(circle at 50% 0%,#07385f 0%,#03172b 32%,#020817 70%);
+}
+
+/* HEADER */
+
 .header{
-  padding:20px 18px;
+  height:65px;
+  padding:0 18px;
   display:flex;
   align-items:center;
   gap:15px;
+  border-bottom:1px solid #12364e;
 }
 
 .back{
+  font-size:25px;
+  cursor:pointer;
   color:#00c8ff;
-  text-decoration:none;
-  font-size:28px;
 }
 
-.logo{
+.brand{
   font-size:20px;
   font-weight:900;
-  letter-spacing:2px;
+  letter-spacing:1.5px;
 }
 
-.logo span{
+.brand span{
   color:#00c8ff;
 }
 
+/* HERO */
+
 .hero{
-  margin:5px 18px 18px;
-  padding:22px 18px;
-  background:linear-gradient(145deg,#07304d,#04101e);
-  border:1px solid #00c8ff;
+  margin:20px 18px;
+  padding:25px 18px;
   border-radius:20px;
-  box-shadow:0 0 20px rgba(0,200,255,.12);
+  text-align:center;
+  border:1px solid #17506e;
+  background:linear-gradient(145deg,#083653,#061625);
+  box-shadow:0 0 30px rgba(0,200,255,.12);
 }
 
 .game{
   color:#00c8ff;
-  font-size:12px;
+  font-size:11px;
   font-weight:bold;
   letter-spacing:1px;
 }
 
 .hero h1{
   font-size:25px;
-  margin-top:10px;
+  margin:12px 0 8px;
 }
+
+.hero p{
+  color:#89a7ba;
+  font-size:12px;
+}
+
+/* STATUS */
 
 .status{
   display:inline-block;
-  margin-top:10px;
-  padding:6px 10px;
-  border-radius:10px;
-  background:rgba(0,200,255,.12);
+  margin-top:14px;
+  padding:7px 13px;
+  border-radius:20px;
+  background:#063e56;
   color:#00c8ff;
   font-size:10px;
   font-weight:bold;
 }
 
-.info-grid{
+/* PRIZE */
+
+.prize{
+  margin:0 18px 15px;
+  padding:20px;
+  border-radius:17px;
+  background:#061525;
+  border:1px solid #153b53;
+  text-align:center;
+}
+
+.prize small{
+  color:#7895a8;
+  font-size:11px;
+}
+
+.prize h2{
+  color:#00c8ff;
+  font-size:30px;
+  margin-top:7px;
+}
+
+/* INFO */
+
+.info{
+  margin:0 18px 15px;
   display:grid;
   grid-template-columns:1fr 1fr;
   gap:10px;
-  margin-top:18px;
 }
 
-.info{
-  background:#061426;
-  border-radius:11px;
-  padding:13px;
+.box{
+  padding:16px 12px;
+  background:#061525;
+  border:1px solid #153b53;
+  border-radius:14px;
 }
 
-.info small{
+.box span{
   display:block;
-  color:#71899c;
+  color:#718da0;
   font-size:10px;
-  margin-bottom:5px;
+  margin-bottom:6px;
 }
 
-.info b{
+.box strong{
   font-size:14px;
 }
 
+/* SECTION */
+
 .section{
-  margin:0 18px 18px;
-  padding:18px;
-  background:#061426;
-  border:1px solid #123249;
-  border-radius:17px;
+  margin:20px 18px;
 }
 
 .section h2{
-  font-size:16px;
-  margin-bottom:14px;
+  font-size:17px;
+  margin-bottom:12px;
 }
 
-.detail{
-  display:flex;
-  justify-content:space-between;
-  padding:10px 0;
-  border-bottom:1px solid #102a3e;
+.rules{
+  background:#061525;
+  border:1px solid #153b53;
+  border-radius:15px;
+  padding:17px;
+}
+
+.rules p{
+  color:#8ca7b8;
   font-size:12px;
+  line-height:1.8;
 }
 
-.detail:last-child{
-  border-bottom:0;
+.rules p::before{
+  content:"✓ ";
+  color:#00c8ff;
+  font-weight:bold;
 }
 
-.detail span{
-  color:#71899c;
+/* JOIN */
+
+.join-area{
+  margin:25px 18px;
 }
 
-.join{
+.join-btn{
   width:100%;
-  height:48px;
+  padding:15px;
   border:0;
-  border-radius:10px;
-  background:#00c8ff;
-  color:#00111c;
-  font-weight:900;
+  border-radius:12px;
+  background:#00bce9;
+  color:#00131e;
   font-size:14px;
+  font-weight:900;
+  box-shadow:0 5px 20px rgba(0,188,233,.2);
 }
 
 .note{
   text-align:center;
-  color:#71899c;
+  color:#617d90;
   font-size:10px;
   margin-top:10px;
-}
-
-.message{
-  text-align:center;
-  color:#58d68d;
-  font-size:12px;
-  margin-top:12px;
-  min-height:16px;
 }
 </style>
 </head>
 
 <body>
 
-<div class="header">
-  <a href="tournaments.html" class="back">‹</a>
-  <div class="logo">TDX <span>ESPORTS</span></div>
-</div>
+<div class="app">
 
-<div class="hero">
+  <header class="header">
 
-  <div class="game">BGMI</div>
-
-  <h1>TDX ESPORTS CHAMPIONSHIP</h1>
-
-  <div class="status">UPCOMING</div>
-
-  <div class="info-grid">
-
-    <div class="info">
-      <small>ENTRY FEE</small>
-      <b>₹50</b>
+    <div class="back"
+         onclick="goBack()">
+      ‹
     </div>
 
-    <div class="info">
-      <small>PRIZE POOL</small>
-      <b>₹5,000</b>
+    <div class="brand">
+      TDX <span>ESPORTS</span>
     </div>
 
-    <div class="info">
-      <small>DATE</small>
-      <b>20 SEP 2026</b>
+  </header>
+
+
+  <section class="hero">
+
+    <div class="game">
+      BGMI • SQUAD
     </div>
 
-    <div class="info">
-      <small>TIME</small>
-      <b>08:00 PM</b>
+    <h1 id="tournamentName">
+      TDX CHAMPIONSHIP S1
+    </h1>
+
+    <p>
+      Battle for the championship
+    </p>
+
+    <div class="status">
+      UPCOMING
     </div>
+
+  </section>
+
+
+  <div class="prize">
+
+    <small>PRIZE POOL</small>
+
+    <h2 id="prize">
+      ₹10,000
+    </h2>
 
   </div>
+
+
+  <section class="info">
+
+    <div class="box">
+      <span>ENTRY FEE</span>
+      <strong id="entry">₹50</strong>
+    </div>
+
+    <div class="box">
+      <span>TEAM SLOTS</span>
+      <strong id="slots">64 Teams</strong>
+    </div>
+
+    <div class="box">
+      <span>MAP</span>
+      <strong>ERANGEL</strong>
+    </div>
+
+    <div class="box">
+      <span>MATCH TYPE</span>
+      <strong>CLASSIC</strong>
+    </div>
+
+  </section>
+
+
+  <section class="section">
+
+    <h2>Tournament Rules</h2>
+
+    <div class="rules">
+
+      <p>All players must use their registered BGMI ID.</p>
+
+      <p>Team members must join before the match starts.</p>
+
+      <p>Players must follow TDX ESPORTS rules.</p>
+
+      <p>Results will be verified after the match.</p>
+
+      <p>Prize distribution will be done after verification.</p>
+
+    </div>
+
+  </section>
+
+
+  <section class="join-area">
+
+    <button class="join-btn"
+            onclick="joinTournament()">
+      JOIN TOURNAMENT
+    </button>
+
+    <div class="note">
+      Entry fee will be handled on the next step.
+    </div>
+
+  </section>
 
 </div>
 
-<div class="section">
-
-  <h2>Tournament Details</h2>
-
-  <div class="detail">
-    <span>Game</span>
-    <b>BGMI</b>
-  </div>
-
-  <div class="detail">
-    <span>Match Type</span>
-    <b>Squad</b>
-  </div>
-
-  <div class="detail">
-    <span>Total Slots</span>
-    <b>100</b>
-  </div>
-
-  <div class="detail">
-    <span>Available Slots</span>
-    <b>75</b>
-  </div>
-
-  <div class="detail">
-    <span>Entry Fee</span>
-    <b>₹50</b>
-  </div>
-
-  <div class="detail">
-    <span>Prize Pool</span>
-    <b>₹5,000</b>
-  </div>
-
-</div>
-
-<div class="section">
-
-  <h2>Join Tournament</h2>
-
-  <button class="join" onclick="joinTournament()">
-    JOIN TOURNAMENT
-  </button>
-
-  <div class="message" id="message"></div>
-
-  <div class="note">
-    By joining, you agree to the tournament rules.
-  </div>
-
-</div>
 
 <script>
+
+const selected =
+  localStorage.getItem("tdx_selected_tournament");
+
+if(selected){
+
+  document.getElementById("tournamentName")
+    .textContent = selected;
+
+}
+
+
+/* BACK */
+
+function goBack(){
+
+  window.location.href =
+    "tournaments.html";
+
+}
+
+
+/* JOIN */
+
 function joinTournament(){
 
   localStorage.setItem(
     "tdx_joined_tournament",
-    "TDX ESPORTS CHAMPIONSHIP"
+    document.getElementById("tournamentName").textContent
   );
 
-  document.getElementById("message").textContent =
-    "Tournament joined successfully!";
+  window.location.href =
+    "join.html";
+
 }
+
 </script>
 
 </body>
