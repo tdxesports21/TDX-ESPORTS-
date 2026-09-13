@@ -6,66 +6,448 @@
 <title>TDX ESPORTS - Leaderboard</title>
 
 <style>
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-}
+*{box-sizing:border-box;margin:0;padding:0}
 
 body{
   font-family:Arial,sans-serif;
   background:#020817;
-  color:white;
+  color:#fff;
+}
+
+.app{
   min-height:100vh;
   padding-bottom:85px;
+  background:radial-gradient(circle at 50% 0%,#07385f,#020817 65%);
 }
 
 .header{
-  padding:22px 18px 15px;
+  height:65px;
+  padding:0 18px;
   display:flex;
-  justify-content:space-between;
   align-items:center;
+  justify-content:space-between;
+  border-bottom:1px solid #12364e;
 }
 
-.logo{
+.brand{
   font-size:21px;
   font-weight:900;
-  letter-spacing:2px;
+  letter-spacing:1.5px;
 }
 
-.logo span{
-  color:#00c8ff;
+.brand span{color:#00c8ff}
+
+.header-title{
+  color:#7895a8;
+  font-size:11px;
 }
+
+/* TITLE */
 
 .title{
-  padding:10px 18px 20px;
+  padding:22px 18px 16px;
 }
 
 .title h1{
   font-size:27px;
+  margin-bottom:6px;
 }
 
 .title p{
-  color:#7892a8;
-  font-size:13px;
-  margin-top:6px;
+  color:#7895a8;
+  font-size:12px;
 }
 
+/* TOP 3 */
+
 .top-three{
-  display:flex;
-  align-items:flex-end;
-  justify-content:center;
-  gap:10px;
-  padding:10px 18px 25px;
+  display:grid;
+  grid-template-columns:1fr 1.15fr 1fr;
+  gap:8px;
+  align-items:end;
+  padding:15px 18px 25px;
 }
 
 .top{
-  width:30%;
   text-align:center;
-  background:linear-gradient(145deg,#071c30,#04101e);
-  border:1px solid #12364e;
-  border-radius:16px;
-  padding:16px 5px;
+  padding:15px 7px;
+  border:1px solid #194a64;
+  border-radius:15px;
+  background:#061a2b;
 }
 
-.top
+.top.first{
+  padding-top:25px;
+  padding-bottom:25px;
+  border-color:#00c8ff;
+  box-shadow:0 0 20px rgba(0,200,255,.15);
+}
+
+.crown{
+  font-size:25px;
+  margin-bottom:7px;
+}
+
+.rank{
+  color:#00c8ff;
+  font-weight:900;
+  font-size:12px;
+  margin-bottom:8px;
+}
+
+.top h3{
+  font-size:12px;
+  margin-bottom:8px;
+}
+
+.points{
+  color:#91adbe;
+  font-size:10px;
+}
+
+/* TABLE */
+
+.section{
+  padding:0 18px;
+}
+
+.section-title{
+  font-size:17px;
+  margin-bottom:12px;
+}
+
+.list{
+  border:1px solid #153b53;
+  border-radius:16px;
+  overflow:hidden;
+  background:#061525;
+}
+
+.row{
+  min-height:65px;
+  display:grid;
+  grid-template-columns:40px 1fr 55px 55px;
+  align-items:center;
+  padding:0 12px;
+  border-bottom:1px solid #102d40;
+}
+
+.row:last-child{
+  border-bottom:0;
+}
+
+.row-head{
+  min-height:40px;
+  background:#081e31;
+  color:#688397;
+  font-size:9px;
+}
+
+.pos{
+  color:#00c8ff;
+  font-weight:900;
+  font-size:13px;
+}
+
+.player strong{
+  display:block;
+  font-size:12px;
+  margin-bottom:4px;
+}
+
+.player span{
+  color:#617d90;
+  font-size:9px;
+}
+
+.stat{
+  text-align:center;
+}
+
+.stat strong{
+  display:block;
+  font-size:12px;
+}
+
+.stat span{
+  color:#617d90;
+  font-size:8px;
+}
+
+/* NAV */
+
+.bottom-nav{
+  position:fixed;
+  left:0;
+  right:0;
+  bottom:0;
+  height:72px;
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  background:rgba(3,14,27,.98);
+  border-top:1px solid #16384f;
+  z-index:100;
+}
+
+.nav-item{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:5px;
+  color:#668195;
+  font-size:10px;
+  cursor:pointer;
+}
+
+.nav-icon{
+  font-size:20px;
+}
+
+.nav-item.active{
+  color:#00c8ff;
+}
+</style>
+</head>
+
+<body>
+
+<div class="app">
+
+<header class="header">
+
+  <div class="brand">
+    TDX <span>ESPORTS</span>
+  </div>
+
+  <div class="header-title">
+    BGMI
+  </div>
+
+</header>
+
+
+<section class="title">
+
+  <h1>Leaderboard</h1>
+
+  <p>See who's dominating the battlefield.</p>
+
+</section>
+
+
+<!-- TOP 3 -->
+
+<section class="top-three">
+
+  <div class="top">
+
+    <div class="crown">🥈</div>
+
+    <div class="rank">#2</div>
+
+    <h3>NIGHT HUNTERS</h3>
+
+    <div class="points">
+      86 POINTS
+    </div>
+
+  </div>
+
+
+  <div class="top first">
+
+    <div class="crown">🏆</div>
+
+    <div class="rank">#1</div>
+
+    <h3>TDX WARRIORS</h3>
+
+    <div class="points">
+      102 POINTS
+    </div>
+
+  </div>
+
+
+  <div class="top">
+
+    <div class="crown">🥉</div>
+
+    <div class="rank">#3</div>
+
+    <h3>MARATHA GAMING</h3>
+
+    <div class="points">
+      78 POINTS
+    </div>
+
+  </div>
+
+</section>
+
+
+<section class="section">
+
+  <h2 class="section-title">
+    Players Ranking
+  </h2>
+
+
+  <div class="list">
+
+    <div class="row row-head">
+      <div>RANK</div>
+      <div>PLAYER</div>
+      <div>KILLS</div>
+      <div>PTS</div>
+    </div>
+
+
+    <div class="row">
+
+      <div class="pos">1</div>
+
+      <div class="player">
+        <strong>TDX FURY</strong>
+        <span>TDX WARRIORS</span>
+      </div>
+
+      <div class="stat">
+        <strong>12</strong>
+        <span>KILLS</span>
+      </div>
+
+      <div class="stat">
+        <strong>102</strong>
+        <span>PTS</span>
+      </div>
+
+    </div>
+
+
+    <div class="row">
+
+      <div class="pos">2</div>
+
+      <div class="player">
+        <strong>NIGHT X</strong>
+        <span>NIGHT HUNTERS</span>
+      </div>
+
+      <div class="stat">
+        <strong>10</strong>
+        <span>KILLS</span>
+      </div>
+
+      <div class="stat">
+        <strong>86</strong>
+        <span>PTS</span>
+      </div>
+
+    </div>
+
+
+    <div class="row">
+
+      <div class="pos">3</div>
+
+      <div class="player">
+        <strong>MARATHA OP</strong>
+        <span>MARATHA GAMING</span>
+      </div>
+
+      <div class="stat">
+        <strong>9</strong>
+        <span>KILLS</span>
+      </div>
+
+      <div class="stat">
+        <strong>78</strong>
+        <span>PTS</span>
+      </div>
+
+    </div>
+
+
+    <div class="row">
+
+      <div class="pos">4</div>
+
+      <div class="player">
+        <strong>DOMIN X</strong>
+        <span>DOMIN ESPORTS</span>
+      </div>
+
+      <div class="stat">
+        <strong>7</strong>
+        <span>KILLS</span>
+      </div>
+
+      <div class="stat">
+        <strong>65</strong>
+        <span>PTS</span>
+      </div>
+
+    </div>
+
+
+    <div class="row">
+
+      <div class="pos">5</div>
+
+      <div class="player">
+        <strong>TDX RUSH</strong>
+        <span>TDX WARRIORS</span>
+      </div>
+
+      <div class="stat">
+        <strong>6</strong>
+        <span>KILLS</span>
+      </div>
+
+      <div class="stat">
+        <strong>59</strong>
+        <span>PTS</span>
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+</div>
+
+
+<!-- BOTTOM NAV -->
+
+<nav class="bottom-nav">
+
+  <div class="nav-item"
+       onclick="location.href='home.html'">
+    <div class="nav-icon">⌂</div>
+    <div>Home</div>
+  </div>
+
+  <div class="nav-item"
+       onclick="location.href='tournaments.html'">
+    <div class="nav-icon">🏆</div>
+    <div>Tournaments</div>
+  </div>
+
+  <div class="nav-item active">
+    <div class="nav-icon">📊</div>
+    <div>Leaderboard</div>
+  </div>
+
+  <div class="nav-item"
+       onclick="location.href='profile.html'">
+    <div class="nav-icon">👤</div>
+    <div>Profile</div>
+  </div>
+
+</nav>
+
+</body>
+</html>
