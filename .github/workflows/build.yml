@@ -68,6 +68,7 @@ jobs:
           cp tournament-details.html www/
           cp tournaments.html www/
           cp match-room.html www/
+          cp manage-room.html www/
 
           cat > www/index.html <<'EOF'
           <!DOCTYPE html>
