@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TDX ESPORTS - Match Room</title>
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+
+body{
+  font-family:Arial,sans-serif;
+  background:#020817;
+  color:#fff;
+}
+
+.app{
+  min-height:100vh;
+  padding-bottom:30px;
+  background:radial-gradient(circle at 50% 0%,#07385f,#020817 65%);
+}
+
+.header{
+  height:65px;
+  padding:0 18px;
+  display:flex;
+  align-items:center;
+  gap:15px;
+  border-bottom:1px solid #12364e;
+}
+
+.back{
+  color:#00c8ff;
+  font-size:27px;
+  cursor:pointer;
+}
+
+.brand{
+  font-size:20px;
+  font-weight:900;
+  letter-spacing:1.5px;
+}
+
+.brand span{color:#00c8ff}
+
+/* MATCH STATUS */
+
+.status-card{
+  margin:20px 18px;
+  padding:22px;
+  text-align:center;
+  border:1px solid #17506e;
+  border-radius:18px;
+  background:#061a2b;
+}
+
+.live{
+  display:inline-block;
+  padding:6px 12px;
+  border-radius:20px;
+  background:#174b2c;
+  color:#62e58b;
+  font-size:10px;
+  font-weight:bold;
+  margin-bottom:12px;
+}
+
+.status-card h1{
+  font-size:24px;
+  margin-bottom:7px;
+}
+
+.status-card p{
+  color:#7895a8;
+  font-size:12px;
+}
+
+/* ROOM INFO */
+
+.section{
+  margin:20px 18px;
+}
+
+.section h2{
+  font-size:17px;
+  margin-bottom:12px;
+}
+
+.info{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+}
+
+.box{
+  padding:17px 13px;
+  border-radius:14px;
+  border:1px solid #153b53;
+  background:#061525;
+}
+
+.box span{
+  display:block;
+  color:#718da0;
+  font-size:10px;
+  margin-bottom:7px;
+}
+
+.box strong{
+  font-size:15px;
+}
+
+/* ROOM ID */
+
+.room{
+  padding:20px;
+  text-align:center;
+  border:1px solid #00c8ff;
+  border-radius:16px;
+  background:#061a2b;
+}
+
+.room small{
+  color:#7895a8;
+  font-size:10px;
+}
+
+.room h2{
+  color:#00c8ff;
+  font-size:28px;
+  letter-spacing:4px;
+  margin:9px 0;
+}
+
+.password{
+  color:#fff;
+  font-size:15px;
+  letter-spacing:3px;
+}
+
+/* TEAM */
+
+.team{
+  border:1px solid #153b53;
+  border-radius:15px;
+  overflow:hidden;
+  background:#061525;
+}
+
+.member{
+  min-height:55px;
+  padding:0 15px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  border-bottom:1px solid #102d40;
+}
+
+.member:last-child{
+  border-bottom:0;
+}
+
+.member-name{
+  font-size:12px;
+}
+
+.member-role{
+  color:#00c8ff;
+  font-size:9px;
+}
+
+/* BUTTON */
+
+.leave{
+  width:100%;
+  padding:14px;
+  border:1px solid #214a63;
+  border-radius:11px;
+  background:#071a2b;
+  color:#8ca7b8;
+  font-weight:bold;
+}
+</style>
+</head>
+
+<body>
+
+<div class="app">
+
+<header class="header">
+
+  <div class="back"
+       onclick="history.back()">‹</div>
+
+  <div class="brand">
+    TDX <span>ESPORTS</span>
+  </div>
+
+</header>
+
+
+<section class="status-card">
+
+  <div class="live">MATCH ROOM</div>
+
+  <h1>TDX CHAMPIONSHIP S1</h1>
+
+  <p>Room details will be available before match start.</p>
+
+</section>
+
+
+<section class="section">
+
+  <h2>Match Information</h2>
+
+  <div class="info">
+
+    <div class="box">
+      <span>MAP</span>
+      <strong>ERANGEL</strong>
+    </div>
+
+    <div class="box">
+      <span>MODE</span>
+      <strong>SQUAD</strong>
+    </div>
+
+    <div class="box">
+      <span>MATCH</span>
+      <strong>ROUND 1</strong>
+    </div>
+
+    <div class="box">
+      <span>STATUS</span>
+      <strong>UPCOMING</strong>
+    </div>
+
+  </div>
+
+</section>
+
+
+<section class="section">
+
+  <h2>Room Details</h2>
+
+  <div class="room">
+
+    <small>ROOM ID</small>
+
+    <h2 id="roomId">XXXXXX</h2>
+
+    <div class="password">
+      PASSWORD: <b id="roomPassword">XXXX</b>
+    </div>
+
+  </div>
+
+</section>
+
+
+<section class="section">
+
+  <h2>My Team</h2>
+
+  <div class="team">
+
+    <div class="member">
+      <div class="member-name">Captain</div>
+      <div class="member-role">CAPTAIN</div>
+    </div>
+
+    <div class="member">
+      <div class="member-name">Player 1</div>
+      <div class="member-role">PLAYER</div>
+    </div>
+
+    <div class="member">
+      <div class="member-name">Player 2</div>
+      <div class="member-role">PLAYER</div>
+    </div>
+
+    <div class="member">
+      <div class="member-name">Player 3</div>
+      <div class="member-role">PLAYER</div>
+    </div>
+
+  </div>
+
+</section>
+
+
+<section class="section">
+
+  <button class="leave"
+          onclick="history.back()">
+    BACK TO TOURNAMENT
+  </button>
+
+</section>
+
+</div>
+
+
+<script>
+
+/*
+  Demo room information.
+  Later this can be controlled
+  from the Admin panel.
+*/
+
+const roomId =
+  localStorage.getItem("tdx_room_id");
+
+const roomPassword =
+  localStorage.getItem("tdx_room_password");
+
+if(roomId){
+  document.getElementById("roomId").textContent =
+    roomId;
+}
+
+if(roomPassword){
+  document.getElementById("roomPassword").textContent =
+    roomPassword;
+}
+
+</script>
+
+</body>
+</html>
