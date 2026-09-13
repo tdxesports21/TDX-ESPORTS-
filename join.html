@@ -1,260 +1,141 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TDX ESPORTS - Join Team</title>
+<title>Join Team - TDX ESPORTS</title>
 
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
-
+*{box-sizing:border-box}
 body{
-  font-family:Arial,sans-serif;
-  background:#020817;
-  color:white;
+ margin:0;
+ background:#050b18;
+ color:#fff;
+ font-family:Arial,sans-serif;
 }
-
-.app{
-  min-height:100vh;
-  padding-bottom:30px;
-  background:radial-gradient(circle at 50% 0%,#07385f,#020817 65%);
-}
-
 .header{
-  height:65px;
-  padding:0 18px;
-  display:flex;
-  align-items:center;
-  gap:15px;
-  border-bottom:1px solid #12364e;
+ padding:22px 20px;
+ border-bottom:1px solid #12304d;
 }
-
-.back{
-  color:#00c8ff;
-  font-size:27px;
-  cursor:pointer;
+.logo{
+ color:#00d9ff;
+ font-size:25px;
+ font-weight:900;
 }
-
-.brand{
-  font-size:20px;
-  font-weight:900;
-  letter-spacing:1.5px;
+.container{padding:20px}
+.card{
+ background:#0b1628;
+ border:1px solid #123653;
+ border-radius:18px;
+ padding:20px;
 }
-
-.brand span{color:#00c8ff}
-
-.content{
-  padding:22px 18px;
-}
-
-.content h1{
-  font-size:25px;
-  margin-bottom:7px;
-}
-
-.subtitle{
-  color:#7895a8;
-  font-size:12px;
-  margin-bottom:24px;
-}
-
-.tournament{
-  padding:16px;
-  border:1px solid #17506e;
-  border-radius:15px;
-  background:#061a2b;
-  margin-bottom:20px;
-}
-
-.tournament small{
-  color:#00c8ff;
-  font-size:10px;
-}
-
-.tournament h2{
-  font-size:17px;
-  margin-top:7px;
-}
-
-.form-box{
-  padding:18px;
-  border:1px solid #153b53;
-  border-radius:17px;
-  background:#061525;
-}
+h1{font-size:24px;margin:0 0 8px}
+.sub{color:#8ea4bd;margin-bottom:22px}
 
 label{
-  display:block;
-  color:#8ca7b8;
-  font-size:11px;
-  margin-bottom:7px;
+ display:block;
+ color:#9db2c9;
+ font-size:13px;
+ margin:16px 0 7px;
 }
-
 input{
-  width:100%;
-  padding:13px;
-  margin-bottom:16px;
-  border-radius:10px;
-  border:1px solid #214a63;
-  background:#020d1b;
-  color:white;
-  outline:none;
+ width:100%;
+ padding:14px;
+ border-radius:10px;
+ border:1px solid #234665;
+ background:#07101f;
+ color:white;
+ outline:none;
 }
+input:focus{border-color:#00d9ff}
 
-input:focus{
-  border-color:#00c8ff;
+button{
+ width:100%;
+ margin-top:22px;
+ padding:15px;
+ border:0;
+ border-radius:12px;
+ background:#00d9ff;
+ color:#001018;
+ font-size:16px;
+ font-weight:800;
 }
-
-.submit{
-  width:100%;
-  padding:14px;
-  border:0;
-  border-radius:11px;
-  background:#00bce9;
-  color:#00131e;
-  font-weight:900;
-  font-size:13px;
+.back{
+ display:block;
+ text-align:center;
+ margin-top:18px;
+ color:#00d9ff;
+ text-decoration:none;
 }
-
 .note{
-  text-align:center;
-  color:#617d90;
-  font-size:10px;
-  margin-top:13px;
+ margin-top:18px;
+ padding:12px;
+ background:#07101f;
+ border-radius:10px;
+ color:#8198b0;
+ font-size:12px;
 }
 </style>
 </head>
 
 <body>
 
-<div class="app">
-
-<header class="header">
-
-  <div class="back" onclick="history.back()">‹</div>
-
-  <div class="brand">
-    TDX <span>ESPORTS</span>
-  </div>
-
-</header>
-
-
-<div class="content">
-
-  <h1>Join Team</h1>
-
-  <p class="subtitle">
-    Enter your details to join the tournament.
-  </p>
-
-
-  <div class="tournament">
-
-    <small>SELECTED TOURNAMENT</small>
-
-    <h2 id="tournamentName">
-      TDX CHAMPIONSHIP S1
-    </h2>
-
-  </div>
-
-
-  <div class="form-box">
-
-    <label>PLAYER NAME</label>
-
-    <input
-      type="text"
-      id="playerName"
-      placeholder="Enter player name"
-    >
-
-
-    <label>BGMI ID / UID</label>
-
-    <input
-      type="text"
-      id="bgmiId"
-      placeholder="Enter BGMI ID"
-    >
-
-
-    <label>TEAM NAME</label>
-
-    <input
-      type="text"
-      id="teamName"
-      placeholder="Enter team name"
-    >
-
-
-    <button
-      class="submit"
-      onclick="submitJoin()">
-      JOIN TEAM
-    </button>
-
-    <div class="note">
-      Make sure your BGMI ID is correct.
-    </div>
-
-  </div>
-
+<div class="header">
+  <div class="logo">TDX ESPORTS</div>
 </div>
 
+<div class="container">
+
+<div class="card">
+
+<h1>Join Tournament</h1>
+<div class="sub">Enter your BGMI & team details</div>
+
+<label>Player Name</label>
+<input id="playerName" type="text" placeholder="Enter player name">
+
+<label>BGMI ID / UID</label>
+<input id="bgmiId" type="text" placeholder="Enter BGMI ID">
+
+<label>Team Name</label>
+<input id="teamName" type="text" placeholder="Enter team name">
+
+<button onclick="joinTournament()">JOIN TEAM</button>
+
+<div class="note">
+Make sure your BGMI ID and team details are correct before joining.
 </div>
 
+<a class="back" href="tournament-details.html">← Back to Tournament</a>
+
+</div>
+</div>
 
 <script>
 
-const selected =
-  localStorage.getItem("tdx_selected_tournament");
+function joinTournament(){
 
-if(selected){
-  document.getElementById("tournamentName").textContent =
-    selected;
-}
+ const playerName=document.getElementById("playerName").value.trim();
+ const bgmiId=document.getElementById("bgmiId").value.trim();
+ const teamName=document.getElementById("teamName").value.trim();
 
+ if(!playerName || !bgmiId || !teamName){
+   alert("Please fill all details.");
+   return;
+ }
 
-/* JOIN */
+ localStorage.setItem("tdx_join_data",JSON.stringify({
+   playerName:playerName,
+   bgmiId:bgmiId,
+   teamName:teamName
+ }));
 
-function submitJoin(){
+ localStorage.setItem("tdx_joined_tournament","true");
 
-  const player =
-    document.getElementById("playerName").value.trim();
+ alert("Team joined successfully!");
 
-  const bgmi =
-    document.getElementById("bgmiId").value.trim();
-
-  const team =
-    document.getElementById("teamName").value.trim();
-
-  if(!player || !bgmi || !team){
-
-    alert("Please fill all details.");
-
-    return;
-  }
-
-
-  localStorage.setItem(
-    "tdx_join_data",
-    JSON.stringify({
-      tournament:
-        document.getElementById("tournamentName").textContent,
-      player:player,
-      bgmi:bgmi,
-      team:team
-    })
-  );
-
-
-  alert("Team joined successfully!");
-
-  window.location.href =
-    "leaderboard.html";
-
+ // Next screen
+ window.location.href="match-room.html";
 }
 
 </script>
