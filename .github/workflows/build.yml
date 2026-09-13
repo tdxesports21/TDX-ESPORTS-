@@ -46,11 +46,15 @@ jobs:
         run: npm install
 
       - name: Prepare web assets
-        run: |
-          mkdir -p www
-          cp ./*.html ./www/
-          test -f ./www/index.html
-          echo "Web assets ready"
+  run: |
+    mkdir -p www
+
+    for file in admin-login.html admin.html create-tournament.html home.html join.html leaderboard.html login.html manage-admins.html manage-results.html manage-teams.html owner.html profile.html results.html splash.html team.html tournament-details.html tournaments.html; do
+      cp "$file" www/
+    done
+
+    echo "Web assets ready"
+    ls -la www
 
       - name: Setup Capacitor
         run: |
