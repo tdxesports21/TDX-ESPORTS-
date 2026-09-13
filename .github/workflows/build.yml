@@ -48,12 +48,18 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Prepare web assets
-        run: |
-          mkdir -p www
-          cp *.html www/
-          test -f www/index.html
-          echo "Web assets ready"
+- name: Prepare web assets
+  run: |
+    mkdir -p www
+    echo "Files in repository:"
+    ls -la
+    echo "HTML files:"
+    find . -maxdepth 1 -type f -name "*.html" -print
+    cp ./*.html ./www/
+    echo "Files copied to www:"
+    ls -la www
+    test -f ./www/index.html
+    echo "Web assets ready"
 
       - name: Setup Capacitor
         run: |
