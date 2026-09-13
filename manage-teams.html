@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TDX ESPORTS - Manage Teams</title>
+
+<style>
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+  font-family:Arial,sans-serif;
+}
+
+body{
+  background:#061225;
+  color:white;
+  min-height:100vh;
+}
+
+.header{
+  background:#0a1b35;
+  padding:18px;
+  display:flex;
+  align-items:center;
+  gap:15px;
+  border-bottom:1px solid #12375d;
+}
+
+.back{
+  font-size:24px;
+  cursor:pointer;
+}
+
+.logo{
+  color:#19d9ff;
+  font-size:21px;
+  font-weight:bold;
+}
+
+.container{
+  padding:20px;
+}
+
+h1{
+  font-size:25px;
+  margin-bottom:5px;
+}
+
+.subtitle{
+  color:#8ea5bd;
+  font-size:13px;
+  margin-bottom:20px;
+}
+
+.team{
+  background:#0b1d36;
+  border:1px solid #153b61;
+  border-radius:14px;
+  padding:16px;
+  margin-bottom:14px;
+}
+
+.team-top{
+  display:flex;
+  align-items:center;
+  gap:14px;
+}
+
+.team-logo{
+  width:55px;
+  height:55px;
+  border-radius:14px;
+  background:#102c4c;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:27px;
+}
+
+.team-name{
+  font-size:18px;
+  font-weight:bold;
+}
+
+.team-id{
+  color:#8098b0;
+  font-size:11px;
+  margin-top:4px;
+}
+
+.status{
+  margin-left:auto;
+  background:#103c38;
+  color:#35e6c0;
+  padding:6px 9px;
+  border-radius:7px;
+  font-size:10px;
+}
+
+.info{
+  display:grid;
+  grid-template-columns:1fr 1fr 1fr;
+  gap:8px;
+  margin-top:15px;
+}
+
+.info-box{
+  background:#08182c;
+  padding:10px 5px;
+  border-radius:8px;
+  text-align:center;
+}
+
+.info-box b{
+  display:block;
+  color:#19d9ff;
+  font-size:15px;
+}
+
+.info-box span{
+  color:#8098b0;
+  font-size:9px;
+}
+
+.buttons{
+  display:flex;
+  gap:8px;
+  margin-top:14px;
+}
+
+button{
+  flex:1;
+  padding:11px;
+  border-radius:8px;
+  border:1px solid #1b466d;
+  background:#102943;
+  color:white;
+  font-weight:bold;
+  font-size:12px;
+}
+
+.delete{
+  background:#321d29;
+  border-color:#633143;
+  color:#ff7f9d;
+}
+
+.add{
+  width:100%;
+  margin-bottom:18px;
+  background:#12cde9;
+  color:#00131f;
+  border:none;
+  padding:14px;
+  border-radius:10px;
+  font-size:14px;
+  font-weight:bold;
+}
+</style>
+</head>
+
+<body>
+
+<div class="header">
+  <div class="back" onclick="goBack()">‹</div>
+  <div class="logo">TDX ESPORTS</div>
+</div>
+
+<div class="container">
+
+<h1>Manage Teams</h1>
+<div class="subtitle">View and manage registered teams</div>
+
+<button class="add" onclick="addTeam()">+ ADD NEW TEAM</button>
+
+<div class="team">
+
+  <div class="team-top">
+    <div class="team-logo">⚡</div>
+
+    <div>
+      <div class="team-name">DOMIN ESPORTS</div>
+      <div class="team-id">TEAM ID: TDX001</div>
+    </div>
+
+    <div class="status">ACTIVE</div>
+  </div>
+
+  <div class="info">
+    <div class="info-box">
+      <b>4</b>
+      <span>MEMBERS</span>
+    </div>
+
+    <div class="info-box">
+      <b>12</b>
+      <span>MATCHES</span>
+    </div>
+
+    <div class="info-box">
+      <b>8</b>
+      <span>WINS</span>
+    </div>
+  </div>
+
+  <div class="buttons">
+    <button onclick="viewTeam('DOMIN ESPORTS')">VIEW</button>
+    <button onclick="editTeam('DOMIN ESPORTS')">EDIT</button>
+    <button class="delete" onclick="deleteTeam('DOMIN ESPORTS')">DELETE</button>
+  </div>
+
+</div>
+
+<div class="team">
+
+  <div class="team-top">
+    <div class="team-logo">🔥</div>
+
+    <div>
+      <div class="team-name">TDX WARRIORS</div>
+      <div class="team-id">TEAM ID: TDX002</div>
+    </div>
+
+    <div class="status">ACTIVE</div>
+  </div>
+
+  <div class="info">
+    <div class="info-box">
+      <b>4</b>
+      <span>MEMBERS</span>
+    </div>
+
+    <div class="info-box">
+      <b>9</b>
+      <span>MATCHES</span>
+    </div>
+
+    <div class="info-box">
+      <b>5</b>
+      <span>WINS</span>
+    </div>
+  </div>
+
+  <div class="buttons">
+    <button onclick="viewTeam('TDX WARRIORS')">VIEW</button>
+    <button onclick="editTeam('TDX WARRIORS')">EDIT</button>
+    <button class="delete" onclick="deleteTeam('TDX WARRIORS')">DELETE</button>
+  </div>
+
+</div>
+
+</div>
+
+<script>
+
+function goBack(){
+  window.location.href="admin.html";
+}
+
+function addTeam(){
+  alert("Add Team feature will be connected later.");
+}
+
+function viewTeam(name){
+  alert("Viewing team: " + name);
+}
+
+function editTeam(name){
+  alert("Edit team: " + name);
+}
+
+function deleteTeam(name){
+  if(confirm("Delete " + name + "?")){
+    alert("Team deleted.");
+  }
+}
+
+</script>
+
+</body>
+</html>
