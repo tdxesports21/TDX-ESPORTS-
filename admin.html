@@ -6,7 +6,11 @@
 <title>TDX ESPORTS - Admin</title>
 
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
 
 body{
   font-family:Arial,sans-serif;
@@ -17,7 +21,11 @@ body{
 .app{
   min-height:100vh;
   padding-bottom:30px;
-  background:radial-gradient(circle at 50% 0%,#07385f,#020817 65%);
+  background:radial-gradient(
+    circle at 50% 0%,
+    #07385f,
+    #020817 65%
+  );
 }
 
 .header{
@@ -34,7 +42,9 @@ body{
   letter-spacing:1.5px;
 }
 
-.brand span{color:#00c8ff}
+.brand span{
+  color:#00c8ff;
+}
 
 .admin-badge{
   padding:7px 10px;
@@ -110,10 +120,16 @@ body{
   justify-content:space-between;
   border-bottom:1px solid #102d40;
   cursor:pointer;
+  transition:.2s;
 }
 
 .item:last-child{
   border-bottom:0;
+}
+
+.item:active{
+  background:#09263a;
+  transform:scale(.99);
 }
 
 .left{
@@ -162,6 +178,11 @@ body{
   color:#ff7185;
   font-weight:bold;
 }
+
+.logout:active{
+  background:#241019;
+}
+
 </style>
 </head>
 
@@ -226,6 +247,8 @@ body{
   <div class="menu">
 
 
+    <!-- CREATE TOURNAMENT -->
+
     <div class="item"
          onclick="location.href='create-tournament.html'">
 
@@ -244,6 +267,8 @@ body{
 
     </div>
 
+
+    <!-- MANAGE TEAMS -->
 
     <div class="item"
          onclick="location.href='manage-teams.html'">
@@ -264,6 +289,29 @@ body{
     </div>
 
 
+    <!-- MATCH ROOM -->
+
+    <div class="item"
+         onclick="location.href='manage-room.html'">
+
+      <div class="left">
+
+        <div class="icon">🎮</div>
+
+        <div>
+          <strong>MATCH ROOM</strong>
+          <small>Manage room ID and password</small>
+        </div>
+
+      </div>
+
+      <div class="arrow">›</div>
+
+    </div>
+
+
+    <!-- UPDATE RESULTS -->
+
     <div class="item"
          onclick="location.href='manage-results.html'">
 
@@ -282,6 +330,8 @@ body{
 
     </div>
 
+
+    <!-- LEADERBOARD -->
 
     <div class="item"
          onclick="location.href='leaderboard.html'">
@@ -302,6 +352,8 @@ body{
     </div>
 
 
+    <!-- MANAGE ADMINS -->
+
     <div class="item"
          onclick="location.href='manage-admins.html'">
 
@@ -320,6 +372,8 @@ body{
 
     </div>
 
+
+    <!-- OWNER PANEL -->
 
     <div class="item"
          onclick="location.href='owner.html'">
@@ -342,6 +396,8 @@ body{
 
   </div>
 
+
+  <!-- LOGOUT -->
 
   <button class="logout"
           onclick="logout()">
