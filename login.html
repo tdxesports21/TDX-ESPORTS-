@@ -16,22 +16,22 @@ body{
   min-height:100vh;
   font-family:Arial,sans-serif;
   background:#020817;
-  color:white;
+  color:#fff;
 }
 
 .login{
   min-height:100vh;
-  padding:45px 25px;
+  padding:35px 22px;
   display:flex;
   flex-direction:column;
   align-items:center;
   justify-content:center;
   background:
-    radial-gradient(circle at 50% 15%,#073c67 0%,#03182d 38%,#020817 80%);
+    radial-gradient(circle at 50% 10%,#073c67 0%,#03182d 40%,#020817 82%);
 }
 
 .logo{
-  font-size:36px;
+  font-size:38px;
   font-weight:900;
   letter-spacing:4px;
   text-shadow:0 0 18px #00c8ff;
@@ -41,13 +41,13 @@ body{
   display:block;
   text-align:center;
   color:#00c8ff;
-  font-size:13px;
+  font-size:12px;
   letter-spacing:6px;
   margin-top:5px;
 }
 
 .subtitle{
-  margin-top:35px;
+  margin-top:28px;
   color:#9bb6ca;
   font-size:14px;
 }
@@ -55,7 +55,7 @@ body{
 .card{
   width:100%;
   max-width:390px;
-  margin-top:25px;
+  margin-top:24px;
 }
 
 .input{
@@ -66,12 +66,13 @@ body{
   border-radius:12px;
   outline:none;
   background:#071827;
-  color:white;
+  color:#fff;
   font-size:15px;
 }
 
 .input:focus{
   border-color:#00c8ff;
+  box-shadow:0 0 10px rgba(0,200,255,.15);
 }
 
 .login-btn{
@@ -87,9 +88,254 @@ body{
   box-shadow:0 0 18px rgba(0,200,255,.35);
 }
 
+.login-btn:active{
+  transform:scale(.98);
+}
+
 .divider{
   display:flex;
   align-items:center;
   gap:12px;
   margin:22px 0;
-  color:#6e
+  color:#6e8799;
+  font-size:12px;
+}
+
+.line{
+  height:1px;
+  flex:1;
+  background:#173a55;
+}
+
+.google-btn{
+  width:100%;
+  padding:15px;
+  border:1px solid #21445e;
+  border-radius:12px;
+  background:#081a2b;
+  color:#fff;
+  font-size:15px;
+  font-weight:700;
+  cursor:pointer;
+}
+
+.google-icon{
+  margin-right:10px;
+  font-size:18px;
+}
+
+.switch{
+  margin-top:22px;
+  text-align:center;
+  color:#8faabd;
+  font-size:13px;
+}
+
+.switch span{
+  color:#00c8ff;
+  font-weight:700;
+  cursor:pointer;
+}
+
+.status{
+  min-height:18px;
+  margin-top:14px;
+  text-align:center;
+  color:#00c8ff;
+  font-size:12px;
+}
+
+.footer{
+  position:fixed;
+  bottom:18px;
+  color:#526d80;
+  font-size:11px;
+  letter-spacing:1px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="login">
+
+  <div class="logo">
+    TDX
+    <span>ESPORTS</span>
+  </div>
+
+  <div class="subtitle" id="subtitle">
+    Login to continue
+  </div>
+
+  <div class="card">
+
+    <input
+      id="email"
+      class="input"
+      type="email"
+      placeholder="Email address"
+      autocomplete="email"
+    >
+
+    <input
+      id="password"
+      class="input"
+      type="password"
+      placeholder="Password"
+      autocomplete="current-password"
+    >
+
+    <button class="login-btn" id="loginBtn">
+      LOGIN
+    </button>
+
+    <div class="divider">
+      <div class="line"></div>
+      OR CONTINUE WITH
+      <div class="line"></div>
+    </div>
+
+    <button class="google-btn" id="googleLoginBtn">
+      <span class="google-icon">G</span>
+      Continue with Google
+    </button>
+
+    <div class="switch">
+      Don't have an account?
+      <span id="signupBtn">SIGN UP</span>
+    </div>
+
+    <div class="status" id="status"></div>
+
+  </div>
+
+  <div class="footer">
+    TDX ESPORTS
+  </div>
+
+</div>
+
+<script>
+const email = document.getElementById("email");
+const password = document.getElementById("password");
+const loginBtn = document.getElementById("loginBtn");
+const googleBtn = document.getElementById("googleLoginBtn");
+const signupBtn = document.getElementById("signupBtn");
+const status = document.getElementById("status");
+const subtitle = document.getElementById("subtitle");
+
+let signupMode = false;
+
+function goHome(){
+  localStorage.setItem("tdx_logged_in","true");
+  window.location.href = "home.html";
+}
+
+loginBtn.addEventListener("click", function(){
+
+  const e = email.value.trim();
+  const p = password.value.trim();
+
+  if(!e || !p){
+    status.textContent = "Please enter email and password.";
+    return;
+  }
+
+  status.textContent = signupMode
+    ? "Creating account..."
+    : "Logging in...";
+
+  /*
+    Temporary navigation for the UI build.
+    Firebase authentication can be connected here.
+  */
+
+  setTimeout(() => {
+    goHome();
+  }, 700);
+});
+
+signupBtn.addEventListener("click", function(){
+
+  signupMode = !signupMode;
+
+  if(signupMode){
+    loginBtn.textContent = "CREATE ACCOUNT";
+    subtitle.textContent = "Create your TDX ESPORTS account";
+    signupBtn.textContent = "LOGIN";
+  }else{
+    loginBtn.textContent = "LOGIN";
+    subtitle.textContent = "Login to continue";
+    signupBtn.textContent = "SIGN UP";
+  }
+
+  status.textContent = "";
+});
+
+googleBtn.addEventListener("click", async function(){
+
+  status.textContent = "Opening Google Login...";
+
+  try{
+
+    if(
+      window.Capacitor &&
+      window.Capacitor.Plugins &&
+      window.Capacitor.Plugins.FirebaseAuthentication
+    ){
+
+      const result =
+        await window.Capacitor.Plugins.FirebaseAuthentication
+        .signInWithGoogle();
+
+      if(result && result.user){
+
+        localStorage.setItem(
+          "tdx_logged_in",
+          "true"
+        );
+
+        localStorage.setItem(
+          "tdx_player_name",
+          result.user.displayName || "TDX PLAYER"
+        );
+
+        localStorage.setItem(
+          "tdx_player_email",
+          result.user.email || ""
+        );
+
+        localStorage.setItem(
+          "tdx_player_uid",
+          result.user.uid || ""
+        );
+
+        if(result.user.photoUrl){
+          localStorage.setItem(
+            "tdx_player_dp",
+            result.user.photoUrl
+          );
+        }
+
+        window.location.href = "home.html";
+      }
+
+    }else{
+      status.textContent =
+        "Google Login is not connected in this build.";
+    }
+
+  }catch(error){
+
+    console.error(error);
+
+    status.textContent =
+      "Google Login failed. Please try again.";
+  }
+
+});
+</script>
+
+</body>
+</html>
