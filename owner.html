@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TDX ESPORTS - Owner Panel</title>
+
+<style>
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+  font-family:Arial,sans-serif;
+}
+
+body{
+  background:#061225;
+  color:white;
+  min-height:100vh;
+}
+
+.header{
+  background:#0a1b35;
+  padding:18px;
+  display:flex;
+  align-items:center;
+  gap:15px;
+  border-bottom:1px solid #12375d;
+}
+
+.back{
+  font-size:25px;
+  cursor:pointer;
+}
+
+.logo{
+  color:#19d9ff;
+  font-size:21px;
+  font-weight:bold;
+}
+
+.container{
+  padding:20px;
+}
+
+h1{
+  font-size:25px;
+  margin-bottom:5px;
+}
+
+.subtitle{
+  color:#8ea5bd;
+  font-size:13px;
+  margin-bottom:20px;
+}
+
+.owner-card{
+  background:#0b1d36;
+  border:1px solid #15517a;
+  border-radius:15px;
+  padding:18px;
+  margin-bottom:18px;
+  text-align:center;
+}
+
+.crown{
+  font-size:42px;
+  margin-bottom:8px;
+}
+
+.owner-card h2{
+  color:#19d9ff;
+  font-size:20px;
+}
+
+.owner-card p{
+  color:#8ea5bd;
+  font-size:12px;
+  margin-top:5px;
+}
+
+.stats{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
+  margin-bottom:18px;
+}
+
+.stat{
+  background:#0b1d36;
+  border:1px solid #153b61;
+  border-radius:13px;
+  padding:17px;
+  text-align:center;
+}
+
+.stat b{
+  display:block;
+  color:#19d9ff;
+  font-size:23px;
+}
+
+.stat span{
+  color:#8098b0;
+  font-size:11px;
+}
+
+.menu{
+  background:#0b1d36;
+  border:1px solid #153b61;
+  border-radius:14px;
+  overflow:hidden;
+}
+
+.item{
+  padding:17px;
+  border-bottom:1px solid #173452;
+  display:flex;
+  align-items:center;
+  gap:13px;
+  cursor:pointer;
+}
+
+.item:last-child{
+  border-bottom:0;
+}
+
+.item-icon{
+  font-size:22px;
+  width:32px;
+}
+
+.item-title{
+  font-size:14px;
+  font-weight:bold;
+}
+
+.item-text{
+  color:#8098b0;
+  font-size:10px;
+  margin-top:3px;
+}
+
+.arrow{
+  margin-left:auto;
+  color:#19d9ff;
+  font-size:20px;
+}
+
+.logout{
+  width:100%;
+  margin-top:20px;
+  padding:14px;
+  border:1px solid #633143;
+  border-radius:10px;
+  background:#321d29;
+  color:#ff7f9d;
+  font-weight:bold;
+}
+</style>
+</head>
+
+<body>
+
+<div class="header">
+  <div class="back" onclick="goBack()">‹</div>
+  <div class="logo">TDX ESPORTS</div>
+</div>
+
+<div class="container">
+
+<h1>Owner Panel</h1>
+<div class="subtitle">Full platform control</div>
+
+<div class="owner-card">
+  <div class="crown">👑</div>
+  <h2>TDX OWNER</h2>
+  <p>Platform Owner & Super Administrator</p>
+</div>
+
+<div class="stats">
+
+  <div class="stat">
+    <b>24</b>
+    <span>TOTAL PLAYERS</span>
+  </div>
+
+  <div class="stat">
+    <b>8</b>
+    <span>TOURNAMENTS</span>
+  </div>
+
+  <div class="stat">
+    <b>6</b>
+    <span>TEAMS</span>
+  </div>
+
+  <div class="stat">
+    <b>2</b>
+    <span>ADMINS</span>
+  </div>
+
+</div>
+
+<div class="menu">
+
+  <div class="item" onclick="openPage('admin.html')">
+    <div class="item-icon">🛡️</div>
+    <div>
+      <div class="item-title">Admin Control Panel</div>
+      <div class="item-text">Manage the complete platform</div>
+    </div>
+    <div class="arrow">›</div>
+  </div>
+
+  <div class="item" onclick="openPage('manage-admins.html')">
+    <div class="item-icon">👤</div>
+    <div>
+      <div class="item-title">Manage Administrators</div>
+      <div class="item-text">Add and manage admins</div>
+    </div>
+    <div class="arrow">›</div>
+  </div>
+
+  <div class="item" onclick="openPage('manage-teams.html')">
+    <div class="item-icon">👥</div>
+    <div>
+      <div class="item-title">Manage Teams</div>
+      <div class="item-text">View registered teams</div>
+    </div>
+    <div class="arrow">›</div>
+  </div>
+
+  <div class="item" onclick="openPage('manage-results.html')">
+    <div class="item-icon">📊</div>
+    <div>
+      <div class="item-title">Manage Results</div>
+      <div class="item-text">Control tournament results</div>
+    </div>
+    <div class="arrow">›</div>
+  </div>
+
+</div>
+
+<button class="logout" onclick="logout()">LOGOUT OWNER</button>
+
+</div>
+
+<script>
+
+function goBack(){
+  window.location.href="admin-login.html";
+}
+
+function openPage(page){
+  window.location.href=page;
+}
+
+function logout(){
+  window.location.href="admin-login.html";
+}
+
+</script>
+
+</body>
+</html>
