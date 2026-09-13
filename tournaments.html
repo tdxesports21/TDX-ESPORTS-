@@ -7,145 +7,153 @@
 
 <style>
 *{
+  box-sizing:border-box;
   margin:0;
   padding:0;
-  box-sizing:border-box;
 }
 
 body{
   font-family:Arial,sans-serif;
   background:#020817;
-  color:white;
+  color:#fff;
+}
+
+.app{
   min-height:100vh;
   padding-bottom:85px;
+  background:
+    radial-gradient(circle at 50% 0%,#07385f 0%,#03172b 32%,#020817 70%);
 }
 
+/* HEADER */
 .header{
-  padding:22px 18px 15px;
+  padding:22px 18px 18px;
   display:flex;
-  justify-content:space-between;
   align-items:center;
+  justify-content:space-between;
 }
 
-.logo{
-  font-size:21px;
+.brand{
+  font-size:22px;
   font-weight:900;
   letter-spacing:2px;
+  text-shadow:0 0 12px #00c8ff;
 }
 
-.logo span{
+.brand span{
   color:#00c8ff;
 }
 
-.profile{
-  width:42px;
-  height:42px;
-  border:2px solid #00c8ff;
+.search{
+  width:40px;
+  height:40px;
   border-radius:50%;
+  background:#08243a;
+  border:1px solid #17506e;
   display:flex;
-  align-items:center; 
+  align-items:center;
   justify-content:center;
-  color:#00c8ff;
-  font-size:20px;
-  box-shadow:0 0 12px rgba(0,200,255,.35);
+  font-size:19px;
 }
 
+/* TITLE */
 .title{
-  padding:10px 18px 18px;
+  padding:5px 18px 18px;
 }
 
 .title h1{
   font-size:27px;
+  margin-bottom:7px;
 }
 
 .title p{
-  color:#7892a8;
+  color:#7895a8;
   font-size:13px;
-  margin-top:6px;
 }
 
+/* TABS */
 .tabs{
   display:flex;
-  gap:10px;
-  padding:0 18px 20px;
+  gap:9px;
+  padding:0 18px 18px;
 }
 
 .tab{
-  padding:10px 18px;
+  padding:9px 17px;
   border-radius:20px;
-  border:1px solid #15354c;
-  color:#8ba4b8;
-  font-size:13px;
+  background:#071a2b;
+  border:1px solid #163b53;
+  color:#7895a8;
+  font-size:12px;
 }
 
 .tab.active{
-  background:#00c8ff;
-  color:#00111c;
-  border-color:#00c8ff;
+  background:#00bce9;
+  border-color:#00bce9;
+  color:#00131e;
   font-weight:bold;
-  box-shadow:0 0 14px rgba(0,200,255,.35);
 }
 
-.section{
+/* CARDS */
+.list{
   padding:0 18px;
 }
 
-.tournament{
-  background:linear-gradient(145deg,#071c30,#04101e);
-  border:1px solid #12364e;
-  border-radius:18px;
-  padding:17px;
-  margin-bottom:15px;
-  box-shadow:0 8px 25px rgba(0,0,0,.25);
+.card{
+  margin-bottom:14px;
+  padding:18px;
+  border-radius:17px;
+  border:1px solid #15435d;
+  background:linear-gradient(135deg,#082a43,#061625);
 }
 
-.t-top{
+.card-top{
   display:flex;
-  justify-content:space-between;
   align-items:center;
+  justify-content:space-between;
 }
 
 .game{
   color:#00c8ff;
-  font-size:12px;
+  font-size:10px;
   font-weight:bold;
   letter-spacing:1px;
 }
 
 .status{
-  font-size:11px;
   padding:5px 9px;
-  border-radius:10px;
-  background:rgba(0,200,255,.12);
+  border-radius:20px;
+  font-size:9px;
+  font-weight:bold;
+}
+
+.upcoming{
+  background:#063c55;
   color:#00c8ff;
 }
 
-.tournament h2{
-  font-size:19px;
-  margin-top:12px;
+.live{
+  background:#164d2b;
+  color:#64e58a;
 }
 
-.info{
+.card h2{
+  font-size:18px;
+  margin:12px 0 9px;
+}
+
+.details{
   display:grid;
   grid-template-columns:1fr 1fr;
-  gap:12px;
-  margin-top:15px;
+  gap:9px;
+  color:#91adbe;
+  font-size:11px;
+  line-height:1.5;
 }
 
-.info-box{
-  background:#061426;
-  border-radius:10px;
-  padding:10px;
-}
-
-.info-box small{
+.detail strong{
   display:block;
-  color:#6f899d;
-  font-size:10px;
-  margin-bottom:5px;
-}
-
-.info-box b{
+  color:#fff;
   font-size:13px;
 }
 
@@ -155,195 +163,252 @@ body{
   padding:12px;
   border:0;
   border-radius:10px;
-  background:#00c8ff;
-  color:#00111c;
+  background:#00bce9;
+  color:#00131e;
   font-weight:800;
-  font-size:14px;
+  font-size:12px;
 }
 
+/* BOTTOM NAV */
 .bottom-nav{
   position:fixed;
   left:0;
   right:0;
   bottom:0;
   height:72px;
-  background:#03101d;
-  border-top:1px solid #123249;
-  display:flex;
-  justify-content:space-around;
-  align-items:center;
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  background:rgba(3,14,27,.98);
+  border-top:1px solid #16384f;
+  z-index:100;
 }
 
-.nav{
-  text-align:center;
-  color:#637e93;
+.nav-item{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:5px;
+  color:#668195;
   font-size:10px;
-  text-decoration:none;
 }
 
 .nav-icon{
-  font-size:21px;
-  margin-bottom:4px;
+  font-size:20px;
 }
 
-.nav.active{
+.nav-item.active{
   color:#00c8ff;
-}
-
-@media(max-width:360px){
-  .title h1{
-    font-size:24px;
-  }
+  text-shadow:0 0 10px rgba(0,200,255,.5);
 }
 </style>
 </head>
 
 <body>
 
-<div class="header">
-  <div class="logo">TDX <span>ESPORTS</span></div>
-  <div class="profile">👤</div>
-</div>
+<div class="app">
 
-<div class="title">
-  <h1>Tournaments</h1>
-  <p>Join tournaments and compete with the best</p>
-</div>
-
-<div class="tabs">
-  <div class="tab active">All</div>
-  <div class="tab">Live</div>
-  <div class="tab">Upcoming</div>
-</div>
-
-<div class="section">
-
-  <div class="tournament">
-    <div class="t-top">
-      <div class="game">BGMI</div>
-      <div class="status">UPCOMING</div>
+  <header class="header">
+    <div class="brand">
+      TDX <span>ESPORTS</span>
     </div>
 
-    <h2>TDX ESPORTS CHAMPIONSHIP</h2>
+    <div class="search">⌕</div>
+  </header>
 
-    <div class="info">
-      <div class="info-box">
-        <small>ENTRY FEE</small>
-        <b>₹50</b>
-      </div>
 
-      <div class="info-box">
-        <small>PRIZE POOL</small>
-        <b>₹5,000</b>
-      </div>
+  <section class="title">
+    <h1>Tournaments</h1>
+    <p>Compete. Win. Become a champion.</p>
+  </section>
 
-      <div class="info-box">
-        <small>DATE</small>
-        <b>20 SEP 2026</b>
-      </div>
 
-      <div class="info-box">
-        <small>SLOTS</small>
-        <b>25 / 100</b>
-      </div>
-    </div>
-
-    <button class="join">JOIN TOURNAMENT</button>
+  <div class="tabs">
+    <div class="tab active">ALL</div>
+    <div class="tab">LIVE</div>
+    <div class="tab">UPCOMING</div>
   </div>
 
 
-  <div class="tournament">
-    <div class="t-top">
-      <div class="game">BGMI</div>
-      <div class="status">UPCOMING</div>
+  <section class="list">
+
+    <!-- TOURNAMENT 1 -->
+
+    <div class="card">
+
+      <div class="card-top">
+        <div class="game">BGMI • SQUAD</div>
+        <div class="status upcoming">UPCOMING</div>
+      </div>
+
+      <h2>TDX CHAMPIONSHIP S1</h2>
+
+      <div class="details">
+
+        <div class="detail">
+          Prize Pool
+          <strong>₹10,000</strong>
+        </div>
+
+        <div class="detail">
+          Entry Fee
+          <strong>₹50</strong>
+        </div>
+
+        <div class="detail">
+          Slots
+          <strong>64 Teams</strong>
+        </div>
+
+        <div class="detail">
+          Map
+          <strong>ERANGEL</strong>
+        </div>
+
+      </div>
+
+      <button class="join"
+      onclick="openTournament('TDX CHAMPIONSHIP S1')">
+        VIEW TOURNAMENT
+      </button>
+
     </div>
 
-    <h2>TDX NIGHT BATTLE</h2>
 
-    <div class="info">
-      <div class="info-box">
-        <small>ENTRY FEE</small>
-        <b>FREE</b>
+    <!-- TOURNAMENT 2 -->
+
+    <div class="card">
+
+      <div class="card-top">
+        <div class="game">BGMI • SQUAD</div>
+        <div class="status live">LIVE</div>
       </div>
 
-      <div class="info-box">
-        <small>PRIZE POOL</small>
-        <b>₹2,000</b>
+      <h2>TDX NIGHT BATTLE</h2>
+
+      <div class="details">
+
+        <div class="detail">
+          Prize Pool
+          <strong>₹5,000</strong>
+        </div>
+
+        <div class="detail">
+          Entry Fee
+          <strong>₹30</strong>
+        </div>
+
+        <div class="detail">
+          Slots
+          <strong>32 Teams</strong>
+        </div>
+
+        <div class="detail">
+          Map
+          <strong>MIRAMAR</strong>
+        </div>
+
       </div>
 
-      <div class="info-box">
-        <small>DATE</small>
-        <b>22 SEP 2026</b>
-      </div>
+      <button class="join"
+      onclick="openTournament('TDX NIGHT BATTLE')">
+        VIEW TOURNAMENT
+      </button>
 
-      <div class="info-box">
-        <small>SLOTS</small>
-        <b>48 / 100</b>
-      </div>
     </div>
 
-    <button class="join">JOIN TOURNAMENT</button>
-  </div>
 
+    <!-- TOURNAMENT 3 -->
 
-  <div class="tournament">
-    <div class="t-top">
-      <div class="game">BGMI</div>
-      <div class="status">UPCOMING</div>
+    <div class="card">
+
+      <div class="card-top">
+        <div class="game">BGMI • SQUAD</div>
+        <div class="status upcoming">UPCOMING</div>
+      </div>
+
+      <h2>TDX WEEKEND CUP</h2>
+
+      <div class="details">
+
+        <div class="detail">
+          Prize Pool
+          <strong>₹2,500</strong>
+        </div>
+
+        <div class="detail">
+          Entry Fee
+          <strong>₹20</strong>
+        </div>
+
+        <div class="detail">
+          Slots
+          <strong>25 Teams</strong>
+        </div>
+
+        <div class="detail">
+          Map
+          <strong>SANHOK</strong>
+        </div>
+
+      </div>
+
+      <button class="join"
+      onclick="openTournament('TDX WEEKEND CUP')">
+        VIEW TOURNAMENT
+      </button>
+
     </div>
 
-    <h2>TDX WEEKEND CUP</h2>
-
-    <div class="info">
-      <div class="info-box">
-        <small>ENTRY FEE</small>
-        <b>₹100</b>
-      </div>
-
-      <div class="info-box">
-        <small>PRIZE POOL</small>
-        <b>₹10,000</b>
-      </div>
-
-      <div class="info-box">
-        <small>DATE</small>
-        <b>27 SEP 2026</b>
-      </div>
-
-      <div class="info-box">
-        <small>SLOTS</small>
-        <b>12 / 100</b>
-      </div>
-    </div>
-
-    <button class="join">JOIN TOURNAMENT</button>
-  </div>
+  </section>
 
 </div>
 
-<div class="bottom-nav">
 
-  <a class="nav" href="home.html">
+<!-- BOTTOM NAV -->
+
+<nav class="bottom-nav">
+
+  <div class="nav-item"
+  onclick="location.href='home.html'">
     <div class="nav-icon">⌂</div>
-    Home
-  </a>
+    <div>Home</div>
+  </div>
 
-  <a class="nav active" href="tournaments.html">
+  <div class="nav-item active">
     <div class="nav-icon">🏆</div>
-    Tournaments
-  </a>
+    <div>Tournaments</div>
+  </div>
 
-  <a class="nav" href="results.html">
-    <div class="nav-icon">📊</div>
-    Results
-  </a>
+  <div class="nav-item"
+  onclick="location.href='results.html'">
+    <div class="nav-icon">📋</div>
+    <div>Results</div>
+  </div>
 
-  <a class="nav" href="profile.html">
+  <div class="nav-item"
+  onclick="location.href='profile.html'">
     <div class="nav-icon">👤</div>
-    Profile
-  </a>
+    <div>Profile</div>
+  </div>
 
-</div>
+</nav>
+
+
+<script>
+
+function openTournament(name){
+
+  localStorage.setItem(
+    "tdx_selected_tournament",
+    name
+  );
+
+  location.href="tournament-details.html";
+
+}
+
+</script>
 
 </body>
 </html>
