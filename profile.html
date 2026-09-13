@@ -6,64 +6,61 @@
 <title>TDX ESPORTS - Profile</title>
 
 <style>
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-}
+*{box-sizing:border-box;margin:0;padding:0}
 
 body{
   font-family:Arial,sans-serif;
   background:#020817;
-  color:white;
+  color:#fff;
+}
+
+.app{
   min-height:100vh;
-  padding-bottom:90px;
+  padding-bottom:85px;
+  background:radial-gradient(circle at 50% 0%,#07385f,#020817 65%);
 }
 
 .header{
-  padding:22px 18px;
+  height:65px;
+  padding:0 18px;
   display:flex;
-  justify-content:space-between;
   align-items:center;
+  justify-content:space-between;
+  border-bottom:1px solid #12364e;
 }
 
-.logo{
+.brand{
   font-size:21px;
   font-weight:900;
-  letter-spacing:2px;
+  letter-spacing:1.5px;
 }
 
-.logo span{
-  color:#00c8ff;
-}
+.brand span{color:#00c8ff}
 
 .settings{
-  color:#00c8ff;
-  font-size:22px;
+  color:#7895a8;
+  font-size:21px;
 }
 
-.profile-card{
-  margin:5px 18px 20px;
-  padding:25px 18px;
+/* PROFILE */
+
+.profile{
   text-align:center;
-  background:linear-gradient(145deg,#071c30,#04101e);
-  border:1px solid #12364e;
-  border-radius:20px;
+  padding:25px 18px 20px;
 }
 
 .avatar{
-  width:90px;
-  height:90px;
+  width:92px;
+  height:92px;
   margin:auto;
   border-radius:50%;
   border:3px solid #00c8ff;
+  background:#08243a;
   display:flex;
   align-items:center;
   justify-content:center;
-  font-size:38px;
-  box-shadow:0 0 20px rgba(0,200,255,.4);
   overflow:hidden;
-  background:#061426;
+  box-shadow:0 0 25px rgba(0,200,255,.2);
 }
 
 .avatar img{
@@ -72,101 +69,133 @@ body{
   object-fit:cover;
 }
 
-.player-name{
-  margin-top:14px;
-  font-size:23px;
-  font-weight:800;
+.avatar span{
+  font-size:38px;
 }
 
-.player-id{
+.profile h1{
+  font-size:22px;
+  margin-top:13px;
+}
+
+.uid{
+  color:#7895a8;
+  font-size:11px;
   margin-top:6px;
-  color:#71899c;
-  font-size:12px;
 }
 
-.edit-btn{
-  margin-top:16px;
-  padding:10px 25px;
+.edit{
+  margin-top:13px;
+  padding:9px 20px;
+  border-radius:20px;
   border:1px solid #00c8ff;
   background:transparent;
   color:#00c8ff;
-  border-radius:9px;
+  font-size:11px;
   font-weight:bold;
 }
 
-.section{
-  padding:0 18px;
-}
-
-.section-title{
-  font-size:14px;
-  color:#8ba4b8;
-  margin-bottom:12px;
-  text-transform:uppercase;
-  letter-spacing:1px;
-}
+/* STATS */
 
 .stats{
+  margin:0 18px 18px;
   display:grid;
   grid-template-columns:repeat(3,1fr);
-  gap:10px;
-  margin-bottom:22px;
+  gap:9px;
 }
 
 .stat{
-  background:#061426;
-  border:1px solid #123249;
-  border-radius:12px;
-  padding:15px 5px;
+  padding:16px 7px;
   text-align:center;
+  border:1px solid #153b53;
+  border-radius:14px;
+  background:#061525;
 }
 
-.stat b{
+.stat strong{
   display:block;
   color:#00c8ff;
-  font-size:19px;
+  font-size:20px;
+  margin-bottom:5px;
 }
 
 .stat span{
-  color:#71899c;
-  font-size:10px;
-  margin-top:5px;
-  display:block;
+  color:#718da0;
+  font-size:9px;
+}
+
+/* MENU */
+
+.section{
+  margin:0 18px 18px;
+}
+
+.section h2{
+  font-size:16px;
+  margin-bottom:11px;
 }
 
 .menu{
-  background:#061426;
-  border:1px solid #123249;
+  border:1px solid #153b53;
   border-radius:15px;
   overflow:hidden;
+  background:#061525;
 }
 
-.menu-item{
+.item{
+  min-height:58px;
+  padding:0 15px;
   display:flex;
   align-items:center;
-  padding:16px;
-  border-bottom:1px solid #102a3e;
-  text-decoration:none;
-  color:white;
+  justify-content:space-between;
+  border-bottom:1px solid #102d40;
+  cursor:pointer;
 }
 
-.menu-item:last-child{
+.item:last-child{
   border-bottom:0;
 }
 
-.menu-icon{
-  width:35px;
-  font-size:20px;
+.left{
+  display:flex;
+  align-items:center;
+  gap:12px;
 }
 
-.menu-text{
-  flex:1;
-  font-size:14px;
+.icon{
+  font-size:19px;
+}
+
+.item strong{
+  display:block;
+  font-size:12px;
+}
+
+.item small{
+  display:block;
+  color:#637e91;
+  font-size:9px;
+  margin-top:3px;
 }
 
 .arrow{
-  color:#5e788c;
+  color:#557286;
+  font-size:18px;
 }
+
+/* LOGOUT */
+
+.logout{
+  width:100%;
+  padding:13px;
+  border:1px solid #3b2630;
+  border-radius:11px;
+  background:#160d13;
+  color:#ff7185;
+  font-weight:bold;
+}
+
+/* NAV */
 
 .bottom-nav{
   position:fixed;
@@ -174,26 +203,29 @@ body{
   right:0;
   bottom:0;
   height:72px;
-  background:#03101d;
-  border-top:1px solid #123249;
-  display:flex;
-  justify-content:space-around;
-  align-items:center;
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  background:rgba(3,14,27,.98);
+  border-top:1px solid #16384f;
+  z-index:100;
 }
 
-.nav{
-  text-align:center;
-  color:#637e93;
+.nav-item{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:5px;
+  color:#668195;
   font-size:10px;
-  text-decoration:none;
+  cursor:pointer;
 }
 
 .nav-icon{
-  font-size:21px;
-  margin-bottom:4px;
+  font-size:20px;
 }
 
-.nav.active{
+.nav-item.active{
   color:#00c8ff;
 }
 </style>
@@ -201,131 +233,257 @@ body{
 
 <body>
 
-<div class="header">
-  <div class="logo">TDX <span>ESPORTS</span></div>
-  <div class="settings">⚙</div>
-</div>
+<div class="app">
 
-<div class="profile-card">
+<header class="header">
 
-  <div class="avatar" id="avatar">
-    👤
+  <div class="brand">
+    TDX <span>ESPORTS</span>
   </div>
 
-  <div class="player-name" id="playerName">
+  <div class="settings">⚙</div>
+
+</header>
+
+
+<section class="profile">
+
+  <div class="avatar">
+
+    <span id="avatarText">👤</span>
+
+    <img id="avatarImg"
+         style="display:none;">
+
+  </div>
+
+  <h1 id="playerName">
+    TDX PLAYER
+  </h1>
+
+  <div class="uid">
     TDX PLAYER
   </div>
 
-  <div class="player-id">
-    Player ID: TDX001
-  </div>
-
-  <button class="edit-btn" onclick="editProfile()">
+  <button class="edit"
+          onclick="editProfile()">
     EDIT PROFILE
   </button>
 
-</div>
+</section>
 
-<div class="section">
 
-  <div class="section-title">Statistics</div>
+<section class="stats">
 
-  <div class="stats">
-
-    <div class="stat">
-      <b>0</b>
-      <span>TOURNAMENTS</span>
-    </div>
-
-    <div class="stat">
-      <b>0</b>
-      <span>WINS</span>
-    </div>
-
-    <div class="stat">
-      <b>₹0</b>
-      <span>EARNINGS</span>
-    </div>
-
+  <div class="stat">
+    <strong>0</strong>
+    <span>MATCHES</span>
   </div>
 
-  <div class="section-title">Account</div>
+  <div class="stat">
+    <strong>0</strong>
+    <span>WINS</span>
+  </div>
+
+  <div class="stat">
+    <strong>0</strong>
+    <span>KILLS</span>
+  </div>
+
+</section>
+
+
+<section class="section">
+
+  <h2>Account</h2>
 
   <div class="menu">
 
-    <a href="#" class="menu-item">
-      <div class="menu-icon">👤</div>
-      <div class="menu-text">Personal Information</div>
-      <div class="arrow">›</div>
-    </a>
+    <div class="item"
+         onclick="connectBGMI()">
 
-    <a href="#" class="menu-item">
-      <div class="menu-icon">👥</div>
-      <div class="menu-text">My Team</div>
-      <div class="arrow">›</div>
-    </a>
+      <div class="left">
+        <div class="icon">🎮</div>
 
-    <a href="#" class="menu-item">
-      <div class="menu-icon">🔔</div>
-      <div class="menu-text">Notifications</div>
-      <div class="arrow">›</div>
-    </a>
+        <div>
+          <strong>CONNECT BGMI ID</strong>
+          <small>Connect your BGMI player account</small>
+        </div>
+      </div>
 
-    <a href="#" class="menu-item">
-      <div class="menu-icon">🔒</div>
-      <div class="menu-text">Privacy & Security</div>
       <div class="arrow">›</div>
-    </a>
+
+    </div>
+
+
+    <div class="item"
+         onclick="location.href='team.html'">
+
+      <div class="left">
+        <div class="icon">👥</div>
+
+        <div>
+          <strong>MY TEAM</strong>
+          <small>View and manage your squad</small>
+        </div>
+      </div>
+
+      <div class="arrow">›</div>
+
+    </div>
+
+
+    <div class="item"
+         onclick="location.href='leaderboard.html'">
+
+      <div class="left">
+        <div class="icon">🏆</div>
+
+        <div>
+          <strong>MY RANKING</strong>
+          <small>View leaderboard position</small>
+        </div>
+      </div>
+
+      <div class="arrow">›</div>
+
+    </div>
 
   </div>
 
+</section>
+
+
+<section class="section">
+
+  <button class="logout"
+          onclick="logout()">
+    LOG OUT
+  </button>
+
+</section>
+
 </div>
 
-<div class="bottom-nav">
 
-  <a class="nav" href="home.html">
+<!-- BOTTOM NAV -->
+
+<nav class="bottom-nav">
+
+  <div class="nav-item"
+       onclick="location.href='home.html'">
     <div class="nav-icon">⌂</div>
-    Home
-  </a>
+    <div>Home</div>
+  </div>
 
-  <a class="nav" href="tournaments.html">
+  <div class="nav-item"
+       onclick="location.href='tournaments.html'">
     <div class="nav-icon">🏆</div>
-    Tournaments
-  </a>
+    <div>Tournaments</div>
+  </div>
 
-  <a class="nav" href="results.html">
-    <div class="nav-icon">📊</div>
-    Results
-  </a>
+  <div class="nav-item"
+       onclick="location.href='results.html'">
+    <div class="nav-icon">📋</div>
+    <div>Results</div>
+  </div>
 
-  <a class="nav active" href="profile.html">
+  <div class="nav-item active">
     <div class="nav-icon">👤</div>
-    Profile
-  </a>
+    <div>Profile</div>
+  </div>
 
-</div>
+</nav>
+
 
 <script>
-const savedName = localStorage.getItem("tdx_player_name");
-const savedDP = localStorage.getItem("tdx_player_dp");
+
+/* LOAD NAME */
+
+const savedName =
+  localStorage.getItem("tdx_player_name");
 
 if(savedName){
-  document.getElementById("playerName").textContent = savedName;
+  document.getElementById("playerName").textContent =
+    savedName;
 }
+
+
+/* LOAD DP */
+
+const savedDP =
+  localStorage.getItem("tdx_player_dp");
 
 if(savedDP){
-  document.getElementById("avatar").innerHTML =
-    '<img src="' + savedDP + '" alt="Profile">';
+
+  const img =
+    document.getElementById("avatarImg");
+
+  img.src = savedDP;
+  img.style.display = "block";
+
+  document.getElementById("avatarText").style.display =
+    "none";
 }
+
+
+/* EDIT PROFILE */
 
 function editProfile(){
-  const name = prompt("Enter Player Name:");
 
-  if(name && name.trim()){
-    localStorage.setItem("tdx_player_name", name.trim());
-    document.getElementById("playerName").textContent = name.trim();
+  const oldName =
+    localStorage.getItem("tdx_player_name") ||
+    "TDX PLAYER";
+
+  const newName =
+    prompt("Enter your player name:",oldName);
+
+  if(newName && newName.trim()){
+
+    localStorage.setItem(
+      "tdx_player_name",
+      newName.trim()
+    );
+
+    document.getElementById("playerName").textContent =
+      newName.trim();
+
   }
+
 }
+
+
+/* BGMI */
+
+function connectBGMI(){
+
+  const id =
+    prompt("Enter your BGMI ID / UID:");
+
+  if(id && id.trim()){
+
+    localStorage.setItem(
+      "tdx_bgmi_id",
+      id.trim()
+    );
+
+    alert("BGMI ID saved successfully!");
+
+  }
+
+}
+
+
+/* LOGOUT */
+
+function logout(){
+
+  localStorage.removeItem("tdx_logged_in");
+
+  location.href="login.html";
+
+}
+
 </script>
 
 </body>
