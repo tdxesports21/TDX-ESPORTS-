@@ -3,249 +3,260 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TDX ESPORTS - Join Tournament</title>
+<title>TDX ESPORTS - Join Team</title>
 
 <style>
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-}
+*{box-sizing:border-box;margin:0;padding:0}
 
 body{
   font-family:Arial,sans-serif;
   background:#020817;
   color:white;
+}
+
+.app{
   min-height:100vh;
   padding-bottom:30px;
+  background:radial-gradient(circle at 50% 0%,#07385f,#020817 65%);
 }
 
 .header{
-  padding:20px 18px;
+  height:65px;
+  padding:0 18px;
   display:flex;
   align-items:center;
   gap:15px;
+  border-bottom:1px solid #12364e;
 }
 
 .back{
   color:#00c8ff;
-  text-decoration:none;
-  font-size:28px;
+  font-size:27px;
+  cursor:pointer;
 }
 
-.logo{
+.brand{
   font-size:20px;
   font-weight:900;
-  letter-spacing:2px;
+  letter-spacing:1.5px;
 }
 
-.logo span{
+.brand span{color:#00c8ff}
+
+.content{
+  padding:22px 18px;
+}
+
+.content h1{
+  font-size:25px;
+  margin-bottom:7px;
+}
+
+.subtitle{
+  color:#7895a8;
+  font-size:12px;
+  margin-bottom:24px;
+}
+
+.tournament{
+  padding:16px;
+  border:1px solid #17506e;
+  border-radius:15px;
+  background:#061a2b;
+  margin-bottom:20px;
+}
+
+.tournament small{
   color:#00c8ff;
+  font-size:10px;
 }
 
-.title{
-  padding:10px 18px 20px;
-}
-
-.title h1{
-  font-size:26px;
-}
-
-.title p{
-  color:#7892a8;
-  font-size:13px;
-  margin-top:6px;
-}
-
-.card{
-  margin:0 18px 18px;
-  padding:18px;
-  background:linear-gradient(145deg,#071c30,#04101e);
-  border:1px solid #12364e;
-  border-radius:18px;
-}
-
-.tournament-name{
-  color:#00c8ff;
+.tournament h2{
   font-size:17px;
-  font-weight:800;
+  margin-top:7px;
 }
 
-.tournament-info{
-  color:#7892a8;
-  font-size:11px;
-  margin-top:6px;
+.form-box{
+  padding:18px;
+  border:1px solid #153b53;
+  border-radius:17px;
+  background:#061525;
 }
 
 label{
   display:block;
-  color:#9ab0c0;
-  font-size:12px;
+  color:#8ca7b8;
+  font-size:11px;
   margin-bottom:7px;
 }
 
 input{
   width:100%;
-  height:45px;
+  padding:13px;
   margin-bottom:16px;
-  padding:0 12px;
-  border-radius:9px;
-  border:1px solid #163b53;
-  outline:none;
-  background:#061426;
+  border-radius:10px;
+  border:1px solid #214a63;
+  background:#020d1b;
   color:white;
-  font-size:13px;
+  outline:none;
 }
 
 input:focus{
   border-color:#00c8ff;
 }
 
-.join-btn{
+.submit{
   width:100%;
-  height:47px;
+  padding:14px;
   border:0;
-  border-radius:10px;
-  background:#00c8ff;
-  color:#00111c;
-  font-size:14px;
+  border-radius:11px;
+  background:#00bce9;
+  color:#00131e;
   font-weight:900;
+  font-size:13px;
 }
 
-.message{
+.note{
   text-align:center;
+  color:#617d90;
+  font-size:10px;
   margin-top:13px;
-  min-height:17px;
-  font-size:12px;
-}
-
-.rules{
-  margin:0 18px;
-  padding:16px;
-  background:#061426;
-  border:1px solid #123249;
-  border-radius:15px;
-}
-
-.rules h2{
-  font-size:15px;
-  margin-bottom:10px;
-}
-
-.rules p{
-  color:#71899c;
-  font-size:11px;
-  line-height:1.7;
 }
 </style>
 </head>
 
 <body>
 
-<div class="header">
-  <a href="tournament-details.html" class="back">‹</a>
-  <div class="logo">TDX <span>ESPORTS</span></div>
-</div>
+<div class="app">
 
-<div class="title">
-  <h1>Join Tournament</h1>
-  <p>Enter your player details to participate</p>
-</div>
+<header class="header">
 
-<div class="card">
+  <div class="back" onclick="history.back()">‹</div>
 
-  <div class="tournament-name">
-    TDX ESPORTS CHAMPIONSHIP
+  <div class="brand">
+    TDX <span>ESPORTS</span>
   </div>
 
-  <div class="tournament-info">
-    BGMI • Squad • Entry ₹50 • Prize ₹5,000
-  </div>
+</header>
 
-  <br>
 
-  <label>Player Name</label>
-  <input
-    type="text"
-    id="playerName"
-    placeholder="Enter your player name"
-  >
+<div class="content">
 
-  <label>BGMI ID</label>
-  <input
-    type="text"
-    id="bgmiId"
-    placeholder="Enter your BGMI ID"
-  >
+  <h1>Join Team</h1>
 
-  <label>Team Name</label>
-  <input
-    type="text"
-    id="teamName"
-    placeholder="Enter team name"
-  >
-
-  <button class="join-btn" onclick="submitJoin()">
-    CONFIRM & JOIN
-  </button>
-
-  <div class="message" id="message"></div>
-
-</div>
-
-<div class="rules">
-
-  <h2>Tournament Rules</h2>
-
-  <p>
-    • Enter correct player details.<br>
-    • One player can join with one team.<br>
-    • Follow the tournament schedule.<br>
-    • Follow all match rules and fair-play guidelines.
+  <p class="subtitle">
+    Enter your details to join the tournament.
   </p>
 
+
+  <div class="tournament">
+
+    <small>SELECTED TOURNAMENT</small>
+
+    <h2 id="tournamentName">
+      TDX CHAMPIONSHIP S1
+    </h2>
+
+  </div>
+
+
+  <div class="form-box">
+
+    <label>PLAYER NAME</label>
+
+    <input
+      type="text"
+      id="playerName"
+      placeholder="Enter player name"
+    >
+
+
+    <label>BGMI ID / UID</label>
+
+    <input
+      type="text"
+      id="bgmiId"
+      placeholder="Enter BGMI ID"
+    >
+
+
+    <label>TEAM NAME</label>
+
+    <input
+      type="text"
+      id="teamName"
+      placeholder="Enter team name"
+    >
+
+
+    <button
+      class="submit"
+      onclick="submitJoin()">
+      JOIN TEAM
+    </button>
+
+    <div class="note">
+      Make sure your BGMI ID is correct.
+    </div>
+
+  </div>
+
 </div>
 
+</div>
+
+
 <script>
+
+const selected =
+  localStorage.getItem("tdx_selected_tournament");
+
+if(selected){
+  document.getElementById("tournamentName").textContent =
+    selected;
+}
+
+
+/* JOIN */
+
 function submitJoin(){
 
-  const playerName =
+  const player =
     document.getElementById("playerName").value.trim();
 
-  const bgmiId =
+  const bgmi =
     document.getElementById("bgmiId").value.trim();
 
-  const teamName =
+  const team =
     document.getElementById("teamName").value.trim();
 
-  const message =
-    document.getElementById("message");
+  if(!player || !bgmi || !team){
 
-  if(!playerName || !bgmiId || !teamName){
-
-    message.style.color = "#ff6b6b";
-    message.textContent =
-      "Please fill all details.";
+    alert("Please fill all details.");
 
     return;
   }
 
-  const joinData = {
-    playerName: playerName,
-    bgmiId: bgmiId,
-    teamName: teamName,
-    tournament: "TDX ESPORTS CHAMPIONSHIP"
-  };
 
   localStorage.setItem(
     "tdx_join_data",
-    JSON.stringify(joinData)
+    JSON.stringify({
+      tournament:
+        document.getElementById("tournamentName").textContent,
+      player:player,
+      bgmi:bgmi,
+      team:team
+    })
   );
 
-  message.style.color = "#58d68d";
-  message.textContent =
-    "Successfully joined the tournament!";
+
+  alert("Team joined successfully!");
+
+  window.location.href =
+    "leaderboard.html";
+
 }
+
 </script>
 
 </body>
