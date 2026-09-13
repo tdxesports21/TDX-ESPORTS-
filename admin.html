@@ -6,205 +6,361 @@
 <title>TDX ESPORTS - Admin</title>
 
 <style>
-*{
-  box-sizing:border-box;
-  margin:0;
-  padding:0;
-  font-family:Arial,sans-serif;
-}
+*{box-sizing:border-box;margin:0;padding:0}
 
 body{
-  background:#061225;
-  color:white;
+  font-family:Arial,sans-serif;
+  background:#020817;
+  color:#fff;
+}
+
+.app{
   min-height:100vh;
+  padding-bottom:30px;
+  background:radial-gradient(circle at 50% 0%,#07385f,#020817 65%);
 }
 
 .header{
-  background:#0a1b35;
-  padding:18px;
+  padding:22px 18px;
   display:flex;
   justify-content:space-between;
   align-items:center;
-  border-bottom:1px solid #12375d;
+  border-bottom:1px solid #12364e;
 }
 
-.logo{
-  color:#19d9ff;
-  font-size:22px;
+.brand{
+  font-size:21px;
+  font-weight:900;
+  letter-spacing:1.5px;
+}
+
+.brand span{color:#00c8ff}
+
+.admin-badge{
+  padding:7px 10px;
+  border-radius:20px;
+  background:#063b53;
+  color:#00c8ff;
+  font-size:9px;
   font-weight:bold;
 }
 
-.admin{
-  color:#9fb5cc;
-  font-size:13px;
+.content{
+  padding:22px 18px;
 }
 
-.container{
-  padding:20px;
-}
-
-h1{
-  font-size:25px;
+.content h1{
+  font-size:26px;
   margin-bottom:6px;
 }
 
 .subtitle{
-  color:#8ea5bd;
+  color:#7895a8;
+  font-size:12px;
   margin-bottom:22px;
 }
 
-.grid{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:14px;
-}
-
-.card{
-  background:#0b1d36;
-  border:1px solid #153b61;
-  border-radius:14px;
-  padding:18px;
-  min-height:125px;
-}
-
-.icon{
-  font-size:28px;
-  margin-bottom:10px;
-}
-
-.card h3{
-  font-size:16px;
-  margin-bottom:6px;
-}
-
-.card p{
-  color:#8ea5bd;
-  font-size:12px;
-}
-
-.big{
-  grid-column:1/3;
-}
+/* STATS */
 
 .stats{
   display:grid;
-  grid-template-columns:repeat(3,1fr);
+  grid-template-columns:1fr 1fr;
   gap:10px;
-  margin:22px 0;
+  margin-bottom:22px;
 }
 
 .stat{
-  background:#091a30;
-  border:1px solid #153b61;
-  border-radius:12px;
-  padding:14px 8px;
-  text-align:center;
-}
-
-.stat b{
-  display:block;
-  color:#19d9ff;
-  font-size:21px;
+  padding:18px 14px;
+  border:1px solid #153b53;
+  border-radius:15px;
+  background:#061525;
 }
 
 .stat span{
-  color:#8ea5bd;
-  font-size:11px;
+  color:#718da0;
+  font-size:10px;
 }
 
-button{
+.stat strong{
+  display:block;
+  color:#00c8ff;
+  font-size:25px;
+  margin-top:7px;
+}
+
+/* MENU */
+
+.section-title{
+  font-size:16px;
+  margin-bottom:12px;
+}
+
+.menu{
+  border:1px solid #153b53;
+  border-radius:16px;
+  overflow:hidden;
+  background:#061525;
+}
+
+.item{
+  min-height:64px;
+  padding:0 15px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  border-bottom:1px solid #102d40;
+  cursor:pointer;
+}
+
+.item:last-child{
+  border-bottom:0;
+}
+
+.left{
+  display:flex;
+  align-items:center;
+  gap:13px;
+}
+
+.icon{
+  width:38px;
+  height:38px;
+  border-radius:10px;
+  background:#09283e;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:18px;
+}
+
+.item strong{
+  display:block;
+  font-size:12px;
+}
+
+.item small{
+  display:block;
+  color:#637e91;
+  font-size:9px;
+  margin-top:4px;
+}
+
+.arrow{
+  color:#557286;
+  font-size:20px;
+}
+
+/* LOGOUT */
+
+.logout{
   width:100%;
   margin-top:22px;
   padding:14px;
-  border:none;
-  border-radius:10px;
-  background:#12cde9;
-  color:#00131f;
+  border:1px solid #3b2630;
+  border-radius:11px;
+  background:#160d13;
+  color:#ff7185;
   font-weight:bold;
-  font-size:15px;
-}
-
-button:active{
-  transform:scale(.98);
 }
 </style>
 </head>
 
 <body>
 
-<div class="header">
-  <div class="logo">TDX ESPORTS</div>
-  <div class="admin">ADMIN PANEL</div>
-</div>
+<div class="app">
 
-<div class="container">
+<header class="header">
+
+  <div class="brand">
+    TDX <span>ESPORTS</span>
+  </div>
+
+  <div class="admin-badge">
+    ADMIN
+  </div>
+
+</header>
+
+
+<main class="content">
 
   <h1>Admin Dashboard</h1>
-  <div class="subtitle">Manage your esports platform</div>
+
+  <p class="subtitle">
+    Manage TDX ESPORTS tournaments and players.
+  </p>
+
+
+  <!-- STATS -->
 
   <div class="stats">
-    <div class="stat">
-      <b>24</b>
-      <span>Players</span>
-    </div>
 
     <div class="stat">
-      <b>8</b>
-      <span>Tournaments</span>
+      <span>TOURNAMENTS</span>
+      <strong>3</strong>
     </div>
 
     <div class="stat">
-      <b>6</b>
-      <span>Teams</span>
-    </div>
-  </div>
-
-  <div class="grid">
-
-    <div class="card" onclick="openPage('create-tournament.html')">
-      <div class="icon">🏆</div>
-      <h3>Create Tournament</h3>
-      <p>Create and publish new tournaments</p>
+      <span>TEAMS</span>
+      <strong>128</strong>
     </div>
 
-    <div class="card" onclick="openPage('manage-teams.html')">
-      <div class="icon">👥</div>
-      <h3>Manage Teams</h3>
-      <p>View and manage registered teams</p>
+    <div class="stat">
+      <span>PLAYERS</span>
+      <strong>512</strong>
     </div>
 
-    <div class="card" onclick="openPage('manage-results.html')">
-      <div class="icon">📊</div>
-      <h3>Manage Results</h3>
-      <p>Update tournament results</p>
-    </div>
-
-    <div class="card" onclick="openPage('manage-admins.html')">
-      <div class="icon">🛡️</div>
-      <h3>Manage Admins</h3>
-      <p>Manage administrator accounts</p>
-    </div>
-
-    <div class="card big" onclick="openPage('leaderboard.html')">
-      <div class="icon">🥇</div>
-      <h3>Leaderboard</h3>
-      <p>View player rankings and tournament performance</p>
+    <div class="stat">
+      <span>LIVE MATCHES</span>
+      <strong>1</strong>
     </div>
 
   </div>
 
-  <button onclick="logout()">LOGOUT</button>
+
+  <h2 class="section-title">
+    Management
+  </h2>
+
+
+  <div class="menu">
+
+
+    <div class="item"
+         onclick="location.href='create-tournament.html'">
+
+      <div class="left">
+
+        <div class="icon">🏆</div>
+
+        <div>
+          <strong>CREATE TOURNAMENT</strong>
+          <small>Create a new BGMI tournament</small>
+        </div>
+
+      </div>
+
+      <div class="arrow">›</div>
+
+    </div>
+
+
+    <div class="item"
+         onclick="location.href='manage-teams.html'">
+
+      <div class="left">
+
+        <div class="icon">👥</div>
+
+        <div>
+          <strong>MANAGE TEAMS</strong>
+          <small>View registered teams</small>
+        </div>
+
+      </div>
+
+      <div class="arrow">›</div>
+
+    </div>
+
+
+    <div class="item"
+         onclick="location.href='manage-results.html'">
+
+      <div class="left">
+
+        <div class="icon">📊</div>
+
+        <div>
+          <strong>UPDATE RESULTS</strong>
+          <small>Update match results and points</small>
+        </div>
+
+      </div>
+
+      <div class="arrow">›</div>
+
+    </div>
+
+
+    <div class="item"
+         onclick="location.href='leaderboard.html'">
+
+      <div class="left">
+
+        <div class="icon">🥇</div>
+
+        <div>
+          <strong>LEADERBOARD</strong>
+          <small>View tournament rankings</small>
+        </div>
+
+      </div>
+
+      <div class="arrow">›</div>
+
+    </div>
+
+
+    <div class="item"
+         onclick="location.href='manage-admins.html'">
+
+      <div class="left">
+
+        <div class="icon">🛡️</div>
+
+        <div>
+          <strong>MANAGE ADMINS</strong>
+          <small>Manage TDX administrators</small>
+        </div>
+
+      </div>
+
+      <div class="arrow">›</div>
+
+    </div>
+
+
+    <div class="item"
+         onclick="location.href='owner.html'">
+
+      <div class="left">
+
+        <div class="icon">👑</div>
+
+        <div>
+          <strong>OWNER PANEL</strong>
+          <small>Owner controls</small>
+        </div>
+
+      </div>
+
+      <div class="arrow">›</div>
+
+    </div>
+
+
+  </div>
+
+
+  <button class="logout"
+          onclick="logout()">
+    ADMIN LOGOUT
+  </button>
+
+</main>
 
 </div>
+
 
 <script>
 
-function openPage(page){
-  window.location.href = page;
-}
-
 function logout(){
-  window.location.href = "admin-login.html";
+
+  localStorage.removeItem("tdx_admin_logged_in");
+
+  location.href="admin-login.html";
+
 }
 
 </script>
