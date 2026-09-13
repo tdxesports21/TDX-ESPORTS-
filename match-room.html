@@ -1,330 +1,260 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TDX ESPORTS - Match Room</title>
+<title>Match Room - TDX ESPORTS</title>
 
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
+*{box-sizing:border-box}
 
 body{
-  font-family:Arial,sans-serif;
-  background:#020817;
-  color:#fff;
-}
-
-.app{
-  min-height:100vh;
-  padding-bottom:30px;
-  background:radial-gradient(circle at 50% 0%,#07385f,#020817 65%);
+ margin:0;
+ background:#050b18;
+ color:white;
+ font-family:Arial,sans-serif;
 }
 
 .header{
-  height:65px;
-  padding:0 18px;
-  display:flex;
-  align-items:center;
-  gap:15px;
-  border-bottom:1px solid #12364e;
+ padding:20px;
+ border-bottom:1px solid #12304d;
 }
 
-.back{
-  color:#00c8ff;
-  font-size:27px;
-  cursor:pointer;
+.logo{
+ color:#00d9ff;
+ font-size:24px;
+ font-weight:900;
 }
 
-.brand{
-  font-size:20px;
-  font-weight:900;
-  letter-spacing:1.5px;
+.container{
+ padding:20px;
 }
 
-.brand span{color:#00c8ff}
-
-/* MATCH STATUS */
-
-.status-card{
-  margin:20px 18px;
-  padding:22px;
-  text-align:center;
-  border:1px solid #17506e;
-  border-radius:18px;
-  background:#061a2b;
+.card{
+ background:#0b1628;
+ border:1px solid #123653;
+ border-radius:18px;
+ padding:20px;
+ margin-bottom:16px;
 }
 
-.live{
-  display:inline-block;
-  padding:6px 12px;
-  border-radius:20px;
-  background:#174b2c;
-  color:#62e58b;
-  font-size:10px;
-  font-weight:bold;
-  margin-bottom:12px;
+.title{
+ font-size:22px;
+ font-weight:800;
 }
 
-.status-card h1{
-  font-size:24px;
-  margin-bottom:7px;
-}
-
-.status-card p{
-  color:#7895a8;
-  font-size:12px;
-}
-
-/* ROOM INFO */
-
-.section{
-  margin:20px 18px;
-}
-
-.section h2{
-  font-size:17px;
-  margin-bottom:12px;
+.sub{
+ color:#8da5bd;
+ font-size:13px;
+ margin-top:6px;
 }
 
 .info{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:10px;
+ display:flex;
+ justify-content:space-between;
+ margin-top:18px;
+ padding:14px;
+ background:#07101f;
+ border-radius:12px;
 }
 
-.box{
-  padding:17px 13px;
-  border-radius:14px;
-  border:1px solid #153b53;
-  background:#061525;
+.info span:first-child{
+ color:#8da5bd;
 }
 
-.box span{
-  display:block;
-  color:#718da0;
-  font-size:10px;
-  margin-bottom:7px;
+.value{
+ color:#00d9ff;
+ font-weight:800;
 }
-
-.box strong{
-  font-size:15px;
-}
-
-/* ROOM ID */
 
 .room{
-  padding:20px;
-  text-align:center;
-  border:1px solid #00c8ff;
-  border-radius:16px;
-  background:#061a2b;
+ margin-top:18px;
 }
 
-.room small{
-  color:#7895a8;
-  font-size:10px;
+.roombox{
+ margin-top:10px;
+ padding:16px;
+ background:#07101f;
+ border:1px solid #1b4663;
+ border-radius:12px;
 }
 
-.room h2{
-  color:#00c8ff;
-  font-size:28px;
-  letter-spacing:4px;
-  margin:9px 0;
+.roomlabel{
+ color:#8da5bd;
+ font-size:12px;
 }
 
-.password{
-  color:#fff;
-  font-size:15px;
-  letter-spacing:3px;
+.roomvalue{
+ margin-top:5px;
+ font-size:21px;
+ font-weight:900;
+ letter-spacing:2px;
 }
 
-/* TEAM */
+.copy{
+ margin-top:10px;
+ padding:9px 14px;
+ border:0;
+ border-radius:8px;
+ background:#123653;
+ color:#00d9ff;
+ font-weight:700;
+}
 
 .team{
-  border:1px solid #153b53;
-  border-radius:15px;
-  overflow:hidden;
-  background:#061525;
+ display:flex;
+ align-items:center;
+ justify-content:space-between;
+ padding:13px 0;
+ border-bottom:1px solid #15304a;
 }
 
-.member{
-  min-height:55px;
-  padding:0 15px;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  border-bottom:1px solid #102d40;
+.team:last-child{
+ border-bottom:0;
 }
 
-.member:last-child{
-  border-bottom:0;
+.teamname{
+ font-weight:700;
 }
 
-.member-name{
-  font-size:12px;
+.status{
+ color:#35e68b;
+ font-size:12px;
 }
 
-.member-role{
-  color:#00c8ff;
-  font-size:9px;
+button.main{
+ width:100%;
+ padding:15px;
+ border:0;
+ border-radius:12px;
+ background:#00d9ff;
+ color:#001018;
+ font-size:16px;
+ font-weight:900;
+ margin-top:5px;
 }
 
-/* BUTTON */
-
-.leave{
-  width:100%;
-  padding:14px;
-  border:1px solid #214a63;
-  border-radius:11px;
-  background:#071a2b;
-  color:#8ca7b8;
-  font-weight:bold;
+.back{
+ display:block;
+ text-align:center;
+ margin-top:18px;
+ color:#00d9ff;
+ text-decoration:none;
 }
 </style>
 </head>
 
 <body>
 
-<div class="app">
+<div class="header">
+  <div class="logo">TDX ESPORTS</div>
+</div>
 
-<header class="header">
+<div class="container">
 
-  <div class="back"
-       onclick="history.back()">‹</div>
-
-  <div class="brand">
-    TDX <span>ESPORTS</span>
-  </div>
-
-</header>
-
-
-<section class="status-card">
-
-  <div class="live">MATCH ROOM</div>
-
-  <h1>TDX CHAMPIONSHIP S1</h1>
-
-  <p>Room details will be available before match start.</p>
-
-</section>
-
-
-<section class="section">
-
-  <h2>Match Information</h2>
+<div class="card">
+  <div class="title">MATCH ROOM</div>
+  <div class="sub">Your tournament room details</div>
 
   <div class="info">
-
-    <div class="box">
-      <span>MAP</span>
-      <strong>ERANGEL</strong>
-    </div>
-
-    <div class="box">
-      <span>MODE</span>
-      <strong>SQUAD</strong>
-    </div>
-
-    <div class="box">
-      <span>MATCH</span>
-      <strong>ROUND 1</strong>
-    </div>
-
-    <div class="box">
-      <span>STATUS</span>
-      <strong>UPCOMING</strong>
-    </div>
-
+    <span>Tournament</span>
+    <span class="value">TDX CHAMPIONSHIP S1</span>
   </div>
 
-</section>
+  <div class="info">
+    <span>Map</span>
+    <span class="value">ERANGEL</span>
+  </div>
 
+  <div class="info">
+    <span>Mode</span>
+    <span class="value">SQUAD</span>
+  </div>
+</div>
 
-<section class="section">
+<div class="card">
 
-  <h2>Room Details</h2>
+  <div class="title">ROOM DETAILS</div>
 
   <div class="room">
-
-    <small>ROOM ID</small>
-
-    <h2 id="roomId">XXXXXX</h2>
-
-    <div class="password">
-      PASSWORD: <b id="roomPassword">XXXX</b>
+    <div class="roombox">
+      <div class="roomlabel">ROOM ID</div>
+      <div class="roomvalue" id="roomId">12345678</div>
+      <button class="copy" onclick="copyRoom()">COPY ROOM ID</button>
     </div>
-
   </div>
 
-</section>
-
-
-<section class="section">
-
-  <h2>My Team</h2>
-
-  <div class="team">
-
-    <div class="member">
-      <div class="member-name">Captain</div>
-      <div class="member-role">CAPTAIN</div>
+  <div class="room">
+    <div class="roombox">
+      <div class="roomlabel">PASSWORD</div>
+      <div class="roomvalue" id="roomPassword">TDX2026</div>
+      <button class="copy" onclick="copyPassword()">COPY PASSWORD</button>
     </div>
-
-    <div class="member">
-      <div class="member-name">Player 1</div>
-      <div class="member-role">PLAYER</div>
-    </div>
-
-    <div class="member">
-      <div class="member-name">Player 2</div>
-      <div class="member-role">PLAYER</div>
-    </div>
-
-    <div class="member">
-      <div class="member-name">Player 3</div>
-      <div class="member-role">PLAYER</div>
-    </div>
-
   </div>
-
-</section>
-
-
-<section class="section">
-
-  <button class="leave"
-          onclick="history.back()">
-    BACK TO TOURNAMENT
-  </button>
-
-</section>
 
 </div>
 
+<div class="card">
+
+  <div class="title">MY TEAM</div>
+
+  <div class="team">
+    <div class="teamname" id="myTeam">DOMIN ESPORTS</div>
+    <div class="status">JOINED</div>
+  </div>
+
+  <div class="team">
+    <div id="player">Player</div>
+    <div class="status">READY</div>
+  </div>
+
+</div>
+
+<button class="main" onclick="openProfile()">
+  VIEW PROFILE
+</button>
+
+<a class="back" href="home.html">← Back to Home</a>
+
+</div>
 
 <script>
 
-/*
-  Demo room information.
-  Later this can be controlled
-  from the Admin panel.
-*/
+const joinData =
+ JSON.parse(localStorage.getItem("tdx_join_data") || "{}");
 
-const roomId =
-  localStorage.getItem("tdx_room_id");
-
-const roomPassword =
-  localStorage.getItem("tdx_room_password");
-
-if(roomId){
-  document.getElementById("roomId").textContent =
-    roomId;
+if(joinData.teamName){
+ document.getElementById("myTeam").innerText =
+ joinData.teamName;
 }
 
-if(roomPassword){
-  document.getElementById("roomPassword").textContent =
-    roomPassword;
+if(joinData.playerName){
+ document.getElementById("player").innerText =
+ joinData.playerName;
+}
+
+function copyRoom(){
+
+ const text =
+ document.getElementById("roomId").innerText;
+
+ navigator.clipboard.writeText(text);
+
+ alert("Room ID copied!");
+}
+
+function copyPassword(){
+
+ const text =
+ document.getElementById("roomPassword").innerText;
+
+ navigator.clipboard.writeText(text);
+
+ alert("Password copied!");
+}
+
+function openProfile(){
+ window.location.href="profile.html";
 }
 
 </script>
