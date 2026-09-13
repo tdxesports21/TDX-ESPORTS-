@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "264437436155",
+    "project_id": "tdx-esports-8434b",
+    "storage_bucket": "tdx-esports-8434b.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:264437436155:android:3f92154e7fad70c3ffaa5e",
+        "android_client_info": {
+          "package_name": "com.tdx.esports"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "264437436155-pb5rnfb1jkq546dbbpa61t818u83bqgh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA-SWOABmKJ8MXSVVATJuQsX1DF7056i9M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "264437436155-pb5rnfb1jkq546dbbpa61t818u83bqgh.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
