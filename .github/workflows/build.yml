@@ -9,12 +9,10 @@ jobs:
 
     steps:
 
-      # 1. Checkout
       - name: Checkout
         uses: actions/checkout@v4
 
 
-      # 2. Java 21
       - name: Setup Java 21
         uses: actions/setup-java@v4
         with:
@@ -22,14 +20,12 @@ jobs:
           java-version: '21'
 
 
-      # 3. Node 22
       - name: Setup Node 22
         uses: actions/setup-node@v4
         with:
           node-version: '22'
 
 
-      # 4. Create package.json
       - name: Create package.json
         run: |
           cat > package.json <<'EOF'
@@ -40,7 +36,6 @@ jobs:
             "dependencies": {
               "@capacitor/core": "8.5.1",
               "@capacitor/android": "8.5.1",
-              "@capacitor/firebase": "8.5.1",
               "@capacitor-firebase/authentication": "8.5.1",
               "firebase": "12.19.0"
             },
@@ -52,14 +47,12 @@ jobs:
           EOF
 
 
-      # 5. Install dependencies
       - name: Install dependencies
         run: |
           npm install
 
 
-      # 6. Prepare Web Assets
-      - name: Prepare web assets
+      - name: Prepare Web Assets
         run: |
           mkdir -p www
 
@@ -81,7 +74,7 @@ jobs:
           cp tournament-details.html www/
           cp tournaments.html www/
           cp match-room.html www/
-          cp manage-room.html
+          cp manage-room.html www/
 
           if [ -f "app-logo.png" ]; then
             cp app-logo.png www/app-logo.png
@@ -99,7 +92,6 @@ jobs:
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
             <title>TDX ESPORTS</title>
           </head>
-
           <body>
             <script>
               window.location.href = "splash.html";
@@ -112,14 +104,12 @@ jobs:
           ls -la www
 
 
-      # 7. Setup Capacitor
       - name: Setup Capacitor
         run: |
           npx cap init "TDX ESPORTS" "com.tdx.esports" --web-dir www
           npx cap add android
 
 
-      # 8. Prepare App Icon
       - name: Prepare TDX App Icon
         run: |
           if [ ! -f "app-logo.png" ]; then
@@ -135,16 +125,14 @@ jobs:
           ls -lh assets/icon.png
 
 
-      # 9. Generate Android Launcher Icon
       - name: Generate Android App Icon
         run: |
           npx @capacitor/assets generate --android
 
-          echo "Android launcher icon generated"
+          echo "Android launcher icon generated successfully"
 
 
-      # 10. Firebase Config
-      - name: Add Firebase config
+      - name: Add Firebase Config
         run: |
           if [ -f "google-services.json" ]; then
             cp google-services.json android/app/google-services.json
@@ -155,7 +143,6 @@ jobs:
           fi
 
 
-      # 11. Firebase Authentication Config
       - name: Configure Firebase Authentication
         run: |
           node <<'NODE'
@@ -180,15 +167,12 @@ jobs:
             JSON.stringify(config, null, 2)
           );
 
-          console.log(
-            'Firebase Authentication configured'
-          );
+          console.log('Firebase Authentication configured');
           NODE
 
           cat capacitor.config.json
 
 
-      # 12. Firebase Android Configuration
       - name: Configure Firebase Android
         run: |
           python3 - <<'PY'
@@ -213,7 +197,6 @@ jobs:
           cat android/variables.gradle
 
 
-      # 13. Google Services
       - name: Configure Google Services
         run: |
           python3 - <<'PY'
@@ -238,8 +221,7 @@ jobs:
           cat android/build.gradle
 
 
-      # 14. Apply Google Services Plugin
-      - name: Apply Google Services plugin
+      - name: Apply Google Services Plugin
         run: |
           python3 - <<'PY'
           from pathlib import Path
@@ -259,14 +241,12 @@ jobs:
           tail -30 android/app/build.gradle
 
 
-      # 15. Sync Capacitor
       - name: Sync Capacitor
         run: |
           npx cap sync android
 
 
-      # 16. Force Compile SDK 36
-      - name: Force compile SDK 36
+      - name: Force Compile SDK 36
         run: |
           cat > force-compile-sdk.init.gradle <<'EOF'
           allprojects {
@@ -281,7 +261,6 @@ jobs:
           EOF
 
 
-      # 17. Build APK
       - name: Build APK
         run: |
           cd android
@@ -293,7 +272,6 @@ jobs:
             --no-daemon
 
 
-      # 18. Upload APK
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
