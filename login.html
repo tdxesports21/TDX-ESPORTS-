@@ -50,6 +50,7 @@ body{
   margin-top:28px;
   color:#9bb6ca;
   font-size:14px;
+  text-align:center;
 }
 
 .card{
@@ -99,6 +100,7 @@ body{
   margin:22px 0;
   color:#6e8799;
   font-size:12px;
+  white-space:nowrap;
 }
 
 .line{
@@ -142,11 +144,13 @@ body{
 }
 
 .status{
-  min-height:18px;
+  min-height:20px;
   margin-top:14px;
   text-align:center;
   color:#00c8ff;
   font-size:12px;
+  line-height:18px;
+  word-break:break-word;
 }
 
 .footer{
@@ -180,6 +184,8 @@ body{
       type="email"
       placeholder="Email address"
       autocomplete="email"
+      autocapitalize="none"
+      spellcheck="false"
     >
 
     <input
@@ -188,6 +194,8 @@ body{
       type="password"
       placeholder="Password"
       autocomplete="current-password"
+      autocapitalize="none"
+      spellcheck="false"
     >
 
     <button class="login-btn" id="loginBtn">
@@ -222,43 +230,43 @@ body{
 
 <script>
 
-const email =
-  document.getElementById("email");
-
-const password =
-  document.getElementById("password");
-
-const loginBtn =
-  document.getElementById("loginBtn");
-
-const googleBtn =
-  document.getElementById("googleLoginBtn");
-
-const signupBtn =
-  document.getElementById("signupBtn");
-
-const status =
-  document.getElementById("status");
-
-const subtitle =
-  document.getElementById("subtitle");
+const email = document.getElementById("email");
+const password = document.getElementById("password");
+const loginBtn = document.getElementById("loginBtn");
+const googleBtn = document.getElementById("googleLoginBtn");
+const signupBtn = document.getElementById("signupBtn");
+const status = document.getElementById("status");
+const subtitle = document.getElementById("subtitle");
 
 let signupMode = false;
 
 
-/* GET FIREBASE PLUGIN */
+/* =========================
+   FIREBASE AUTH PLUGIN
+========================= */
 
 function getFirebaseAuth(){
 
-  if(
-    window.Capacitor &&
-    window.Capacitor.Plugins &&
-    window.Capacitor.Plugins.FirebaseAuthentication
-  ){
+  try{
 
-    return window.Capacitor
-      .Plugins
-      .FirebaseAuthentication;
+    if(
+      window.Capacitor &&
+      window.Capacitor.Plugins &&
+      window.Capacitor.Plugins.FirebaseAuthentication
+    ){
+
+      return window.Capacitor
+        .Plugins
+        .FirebaseAuthentication;
+
+    }
+
+  }catch(error){
+
+    console.error(
+      "Plugin error:",
+      error
+    );
 
   }
 
@@ -266,11 +274,15 @@ function getFirebaseAuth(){
 }
 
 
-/* SAVE USER */
+/* =========================
+   SAVE USER
+========================= */
 
 function saveUser(user){
 
-  if(!user) return;
+  if(!user){
+    return;
+  }
 
   localStorage.setItem(
     "tdx_logged_in",
@@ -313,7 +325,9 @@ function saveUser(user){
 }
 
 
-/* GO HOME */
+/* =========================
+   HOME
+========================= */
 
 function goHome(){
 
@@ -324,15 +338,70 @@ function goHome(){
 }
 
 
-/* ERROR MESSAGE */
+/* =========================
+   SHOW EXACT ERROR
+========================= */
+
+function showExactError(error){
+
+  console.error(
+    "========== FIREBASE ERROR =========="
+  );
+
+  console.error(error);
+
+  console.error(
+    "===================================="
+  );
+
+  let code = "";
+  let message = "";
+
+  if(error){
+
+    if(error.code){
+      code = String(error.code);
+    }
+
+    if(error.message){
+      message = String(error.message);
+    }
+
+  }
+
+  if(!code && !message){
+
+    status.textContent =
+      "Firebase error: Unknown error";
+
+    return;
+
+  }
+
+  if(code){
+
+    status.textContent =
+      code + " : " + message;
+
+  }else{
+
+    status.textContent =
+      message;
+
+  }
+
+}
+
+
+/* =========================
+   SIMPLE ERROR MESSAGE
+========================= */
 
 function errorMessage(error){
 
-  console.log(error);
-
   const code =
     error && error.code
-      ? error.code
+      ? String(error.code)
       : "";
 
   if(code.includes("email-already-in-use")){
@@ -362,12 +431,25 @@ function errorMessage(error){
     return "Too many attempts. Try again later.";
   }
 
-  return "Authentication failed. Please try again.";
+  if(code.includes("operation-not-allowed")){
+    return "Email/Password authentication is disabled in Firebase.";
+  }
 
+  if(code.includes("network-request-failed")){
+    return "Network error. Check your internet connection.";
+  }
+
+  if(code.includes("app-not-authorized")){
+    return "This Android app is not authorized in Firebase.";
+  }
+
+  return "Authentication failed.";
 }
 
 
-/* EMAIL LOGIN / SIGNUP */
+/* =========================
+   EMAIL LOGIN / SIGNUP
+========================= */
 
 loginBtn.addEventListener(
   "click",
@@ -379,10 +461,21 @@ loginBtn.addEventListener(
     const p =
       password.value;
 
-    if(!e || !p){
+    status.textContent = "";
+
+    if(!e){
 
       status.textContent =
-        "Please enter email and password.";
+        "Please enter your email.";
+
+      return;
+
+    }
+
+    if(!p){
+
+      status.textContent =
+        "Please enter your password.";
 
       return;
 
@@ -403,7 +496,11 @@ loginBtn.addEventListener(
     if(!auth){
 
       status.textContent =
-        "Firebase Authentication is not connected.";
+        "Firebase Authentication plugin is not connected.";
+
+      console.error(
+        "FirebaseAuthentication plugin not found."
+      );
 
       return;
 
@@ -416,6 +513,8 @@ loginBtn.addEventListener(
 
       let result;
 
+      /* SIGN UP */
+
       if(signupMode){
 
         status.textContent =
@@ -427,7 +526,11 @@ loginBtn.addEventListener(
             password: p
           });
 
-      }else{
+      }
+
+      /* LOGIN */
+
+      else{
 
         status.textContent =
           "Logging in...";
@@ -440,35 +543,54 @@ loginBtn.addEventListener(
 
       }
 
+
+      console.log(
+        "Firebase result:",
+        result
+      );
+
+
       const user =
         result && result.user
           ? result.user
           : null;
 
+
       if(!user){
 
         throw new Error(
-          "User information not received."
+          "Firebase login succeeded but user data was not received."
         );
 
       }
 
+
       saveUser(user);
+
 
       status.textContent =
         signupMode
           ? "Account created successfully."
           : "Login successful.";
 
+
       setTimeout(
         goHome,
-        400
+        500
       );
+
 
     }catch(error){
 
-      status.textContent =
-        errorMessage(error);
+      /* EXACT ERROR FOR TESTING */
+
+      showExactError(error);
+
+      /* ALSO LOG SIMPLE MESSAGE */
+
+      console.log(
+        errorMessage(error)
+      );
 
     }finally{
 
@@ -481,7 +603,9 @@ loginBtn.addEventListener(
 );
 
 
-/* LOGIN / SIGNUP SWITCH */
+/* =========================
+   LOGIN / SIGNUP SWITCH
+========================= */
 
 signupBtn.addEventListener(
   "click",
@@ -489,6 +613,7 @@ signupBtn.addEventListener(
 
     signupMode =
       !signupMode;
+
 
     if(signupMode){
 
@@ -501,7 +626,14 @@ signupBtn.addEventListener(
       signupBtn.textContent =
         "LOGIN";
 
-    }else{
+      password.setAttribute(
+        "autocomplete",
+        "new-password"
+      );
+
+    }
+
+    else{
 
       loginBtn.textContent =
         "LOGIN";
@@ -512,7 +644,13 @@ signupBtn.addEventListener(
       signupBtn.textContent =
         "SIGN UP";
 
+      password.setAttribute(
+        "autocomplete",
+        "current-password"
+      );
+
     }
+
 
     status.textContent = "";
 
@@ -520,7 +658,9 @@ signupBtn.addEventListener(
 );
 
 
-/* GOOGLE LOGIN */
+/* =========================
+   GOOGLE LOGIN
+========================= */
 
 googleBtn.addEventListener(
   "click",
@@ -532,52 +672,85 @@ googleBtn.addEventListener(
     if(!auth){
 
       status.textContent =
-        "Firebase Authentication is not connected.";
+        "Firebase Authentication plugin is not connected.";
 
       return;
 
     }
 
+
     googleBtn.disabled = true;
     loginBtn.disabled = true;
 
+
     status.textContent =
       "Opening Google Login...";
+
 
     try{
 
       const result =
         await auth.signInWithGoogle();
 
+
+      console.log(
+        "Google result:",
+        result
+      );
+
+
       const user =
         result && result.user
           ? result.user
           : null;
 
+
       if(!user){
 
         throw new Error(
-          "Google user information not received."
+          "Google user information was not received."
         );
 
       }
 
+
       saveUser(user);
+
 
       status.textContent =
         "Google Login successful.";
 
+
       setTimeout(
         goHome,
-        400
+        500
       );
+
 
     }catch(error){
 
-      console.error(error);
+      console.error(
+        "Google Firebase error:",
+        error
+      );
+
+      let code =
+        error && error.code
+          ? String(error.code)
+          : "";
+
+      let message =
+        error && error.message
+          ? String(error.message)
+          : "Unknown error";
+
 
       status.textContent =
-        "Google Login failed. Please try again.";
+        "Google: " +
+        code +
+        " : " +
+        message;
+
 
     }finally{
 
