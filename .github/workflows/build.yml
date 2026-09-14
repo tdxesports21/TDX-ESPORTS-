@@ -70,12 +70,12 @@ jobs:
           cp match-room.html www/
           cp manage-room.html www/
 
-          # Copy TDX App Logo into web assets
           if [ -f "app-logo.png" ]; then
             cp app-logo.png www/app-logo.png
-            echo "TDX App Logo copied"
+            echo "TDX App Logo copied successfully"
           else
-            echo "WARNING: app-logo.png not found"
+            echo "ERROR: app-logo.png not found"
+            exit 1
           fi
 
           cat > www/index.html <<'EOF'
@@ -85,18 +85,6 @@ jobs:
             <meta charset="UTF-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
             <title>TDX ESPORTS</title>
-            <style>
-              body {
-                margin: 0;
-                background: #050b18;
-                color: white;
-                font-family: Arial, sans-serif;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                height: 100vh;
-              }
-            </style>
           </head>
           <body>
             <script>
@@ -206,11 +194,6 @@ jobs:
         run: |
           npx cap sync android
 
-      - name: Install ImageMagick
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y imagemagick
-
       - name: Set TDX App Logo
         run: |
           if [ ! -f "app-logo.png" ]; then
@@ -226,55 +209,37 @@ jobs:
           mkdir -p android/app/src/main/res/mipmap-xxhdpi
           mkdir -p android/app/src/main/res/mipmap-xxxhdpi
 
-          magick app-logo.png -resize 48x48 \
+          cp app-logo.png \
             android/app/src/main/res/mipmap-mdpi/ic_launcher.png
 
-          magick app-logo.png -resize 72x72 \
+          cp app-logo.png \
             android/app/src/main/res/mipmap-hdpi/ic_launcher.png
 
-          magick app-logo.png -resize 96x96 \
+          cp app-logo.png \
             android/app/src/main/res/mipmap-xhdpi/ic_launcher.png
 
-          magick app-logo.png -resize 144x144 \
+          cp app-logo.png \
             android/app/src/main/res/mipmap-xxhdpi/ic_launcher.png
 
-          magick app-logo.png -resize 192x192 \
+          cp app-logo.png \
             android/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png
 
-          cp android/app/src/main/res/mipmap-mdpi/ic_launcher.png \
+          cp app-logo.png \
             android/app/src/main/res/mipmap-mdpi/ic_launcher_round.png
 
-          cp android/app/src/main/res/mipmap-hdpi/ic_launcher.png \
+          cp app-logo.png \
             android/app/src/main/res/mipmap-hdpi/ic_launcher_round.png
 
-          cp android/app/src/main/res/mipmap-xhdpi/ic_launcher.png \
+          cp app-logo.png \
             android/app/src/main/res/mipmap-xhdpi/ic_launcher_round.png
 
-          cp android/app/src/main/res/mipmap-xxhdpi/ic_launcher.png \
+          cp app-logo.png \
             android/app/src/main/res/mipmap-xxhdpi/ic_launcher_round.png
 
-          cp android/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png \
+          cp app-logo.png \
             android/app/src/main/res/mipmap-xxxhdpi/ic_launcher_round.png
 
           echo "TDX ESPORTS App Logo applied successfully"
-
-      - name: Set App Name
-        run: |
-          python3 - <<'PY'
-          from pathlib import Path
-
-          p = Path("android/app/src/main/res/values/strings.xml")
-
-          if p.exists():
-              text = p.read_text()
-              text = text.replace(
-                  "App",
-                  "TDX ESPORTS"
-              )
-              p.write_text(text)
-
-          print("App name configured")
-          PY
 
       - name: Force compile SDK 36
         run: |
