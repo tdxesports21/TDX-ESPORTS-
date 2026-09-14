@@ -88,8 +88,8 @@ body{
   box-shadow:0 0 18px rgba(0,200,255,.35);
 }
 
-.login-btn:active{
-  transform:scale(.98);
+.login-btn:disabled{
+  opacity:.6;
 }
 
 .divider{
@@ -117,6 +117,10 @@ body{
   font-size:15px;
   font-weight:700;
   cursor:pointer;
+}
+
+.google-btn:disabled{
+  opacity:.6;
 }
 
 .google-icon{
@@ -217,124 +221,374 @@ body{
 </div>
 
 <script>
-const email = document.getElementById("email");
-const password = document.getElementById("password");
-const loginBtn = document.getElementById("loginBtn");
-const googleBtn = document.getElementById("googleLoginBtn");
-const signupBtn = document.getElementById("signupBtn");
-const status = document.getElementById("status");
-const subtitle = document.getElementById("subtitle");
+
+const email =
+  document.getElementById("email");
+
+const password =
+  document.getElementById("password");
+
+const loginBtn =
+  document.getElementById("loginBtn");
+
+const googleBtn =
+  document.getElementById("googleLoginBtn");
+
+const signupBtn =
+  document.getElementById("signupBtn");
+
+const status =
+  document.getElementById("status");
+
+const subtitle =
+  document.getElementById("subtitle");
 
 let signupMode = false;
 
-function goHome(){
-  localStorage.setItem("tdx_logged_in","true");
-  window.location.href = "home.html";
+
+/* GET FIREBASE PLUGIN */
+
+function getFirebaseAuth(){
+
+  if(
+    window.Capacitor &&
+    window.Capacitor.Plugins &&
+    window.Capacitor.Plugins.FirebaseAuthentication
+  ){
+
+    return window.Capacitor
+      .Plugins
+      .FirebaseAuthentication;
+
+  }
+
+  return null;
 }
 
-loginBtn.addEventListener("click", function(){
 
-  const e = email.value.trim();
-  const p = password.value.trim();
+/* SAVE USER */
 
-  if(!e || !p){
-    status.textContent = "Please enter email and password.";
-    return;
+function saveUser(user){
+
+  if(!user) return;
+
+  localStorage.setItem(
+    "tdx_logged_in",
+    "true"
+  );
+
+  localStorage.setItem(
+    "tdx_player_name",
+    user.displayName || "TDX PLAYER"
+  );
+
+  localStorage.setItem(
+    "tdx_player_email",
+    user.email || ""
+  );
+
+  localStorage.setItem(
+    "tdx_player_uid",
+    user.uid || ""
+  );
+
+  if(user.photoUrl){
+
+    localStorage.setItem(
+      "tdx_player_dp",
+      user.photoUrl
+    );
+
   }
 
-  status.textContent = signupMode
-    ? "Creating account..."
-    : "Logging in...";
+  if(user.photoURL){
 
-  /*
-    Temporary navigation for the UI build.
-    Firebase authentication can be connected here.
-  */
+    localStorage.setItem(
+      "tdx_player_dp",
+      user.photoURL
+    );
 
-  setTimeout(() => {
-    goHome();
-  }, 700);
-});
-
-signupBtn.addEventListener("click", function(){
-
-  signupMode = !signupMode;
-
-  if(signupMode){
-    loginBtn.textContent = "CREATE ACCOUNT";
-    subtitle.textContent = "Create your TDX ESPORTS account";
-    signupBtn.textContent = "LOGIN";
-  }else{
-    loginBtn.textContent = "LOGIN";
-    subtitle.textContent = "Login to continue";
-    signupBtn.textContent = "SIGN UP";
   }
 
-  status.textContent = "";
-});
+}
 
-googleBtn.addEventListener("click", async function(){
 
-  status.textContent = "Opening Google Login...";
+/* GO HOME */
 
-  try{
+function goHome(){
 
-    if(
-      window.Capacitor &&
-      window.Capacitor.Plugins &&
-      window.Capacitor.Plugins.FirebaseAuthentication
-    ){
+  window.location.replace(
+    "home.html"
+  );
 
-      const result =
-        await window.Capacitor.Plugins.FirebaseAuthentication
-        .signInWithGoogle();
+}
 
-      if(result && result.user){
 
-        localStorage.setItem(
-          "tdx_logged_in",
-          "true"
-        );
+/* ERROR MESSAGE */
 
-        localStorage.setItem(
-          "tdx_player_name",
-          result.user.displayName || "TDX PLAYER"
-        );
+function errorMessage(error){
 
-        localStorage.setItem(
-          "tdx_player_email",
-          result.user.email || ""
-        );
+  console.log(error);
 
-        localStorage.setItem(
-          "tdx_player_uid",
-          result.user.uid || ""
-        );
+  const code =
+    error && error.code
+      ? error.code
+      : "";
 
-        if(result.user.photoUrl){
-          localStorage.setItem(
-            "tdx_player_dp",
-            result.user.photoUrl
-          );
-        }
+  if(code.includes("email-already-in-use")){
+    return "This email is already registered.";
+  }
 
-        window.location.href = "home.html";
-      }
+  if(code.includes("invalid-email")){
+    return "Invalid email address.";
+  }
 
-    }else{
+  if(code.includes("weak-password")){
+    return "Password must be at least 6 characters.";
+  }
+
+  if(
+    code.includes("wrong-password") ||
+    code.includes("invalid-credential")
+  ){
+    return "Invalid email or password.";
+  }
+
+  if(code.includes("user-not-found")){
+    return "Account not found.";
+  }
+
+  if(code.includes("too-many-requests")){
+    return "Too many attempts. Try again later.";
+  }
+
+  return "Authentication failed. Please try again.";
+
+}
+
+
+/* EMAIL LOGIN / SIGNUP */
+
+loginBtn.addEventListener(
+  "click",
+  async function(){
+
+    const e =
+      email.value.trim();
+
+    const p =
+      password.value;
+
+    if(!e || !p){
+
       status.textContent =
-        "Google Login is not connected in this build.";
+        "Please enter email and password.";
+
+      return;
+
     }
 
-  }catch(error){
+    if(p.length < 6){
 
-    console.error(error);
+      status.textContent =
+        "Password must be at least 6 characters.";
+
+      return;
+
+    }
+
+    const auth =
+      getFirebaseAuth();
+
+    if(!auth){
+
+      status.textContent =
+        "Firebase Authentication is not connected.";
+
+      return;
+
+    }
+
+    loginBtn.disabled = true;
+    googleBtn.disabled = true;
+
+    try{
+
+      let result;
+
+      if(signupMode){
+
+        status.textContent =
+          "Creating account...";
+
+        result =
+          await auth.createUserWithEmailAndPassword({
+            email: e,
+            password: p
+          });
+
+      }else{
+
+        status.textContent =
+          "Logging in...";
+
+        result =
+          await auth.signInWithEmailAndPassword({
+            email: e,
+            password: p
+          });
+
+      }
+
+      const user =
+        result && result.user
+          ? result.user
+          : null;
+
+      if(!user){
+
+        throw new Error(
+          "User information not received."
+        );
+
+      }
+
+      saveUser(user);
+
+      status.textContent =
+        signupMode
+          ? "Account created successfully."
+          : "Login successful.";
+
+      setTimeout(
+        goHome,
+        400
+      );
+
+    }catch(error){
+
+      status.textContent =
+        errorMessage(error);
+
+    }finally{
+
+      loginBtn.disabled = false;
+      googleBtn.disabled = false;
+
+    }
+
+  }
+);
+
+
+/* LOGIN / SIGNUP SWITCH */
+
+signupBtn.addEventListener(
+  "click",
+  function(){
+
+    signupMode =
+      !signupMode;
+
+    if(signupMode){
+
+      loginBtn.textContent =
+        "CREATE ACCOUNT";
+
+      subtitle.textContent =
+        "Create your TDX ESPORTS account";
+
+      signupBtn.textContent =
+        "LOGIN";
+
+    }else{
+
+      loginBtn.textContent =
+        "LOGIN";
+
+      subtitle.textContent =
+        "Login to continue";
+
+      signupBtn.textContent =
+        "SIGN UP";
+
+    }
+
+    status.textContent = "";
+
+  }
+);
+
+
+/* GOOGLE LOGIN */
+
+googleBtn.addEventListener(
+  "click",
+  async function(){
+
+    const auth =
+      getFirebaseAuth();
+
+    if(!auth){
+
+      status.textContent =
+        "Firebase Authentication is not connected.";
+
+      return;
+
+    }
+
+    googleBtn.disabled = true;
+    loginBtn.disabled = true;
 
     status.textContent =
-      "Google Login failed. Please try again.";
-  }
+      "Opening Google Login...";
 
-});
+    try{
+
+      const result =
+        await auth.signInWithGoogle();
+
+      const user =
+        result && result.user
+          ? result.user
+          : null;
+
+      if(!user){
+
+        throw new Error(
+          "Google user information not received."
+        );
+
+      }
+
+      saveUser(user);
+
+      status.textContent =
+        "Google Login successful.";
+
+      setTimeout(
+        goHome,
+        400
+      );
+
+    }catch(error){
+
+      console.error(error);
+
+      status.textContent =
+        "Google Login failed. Please try again.";
+
+    }finally{
+
+      googleBtn.disabled = false;
+      loginBtn.disabled = false;
+
+    }
+
+  }
+);
+
 </script>
 
 </body>
